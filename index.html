@@ -13,7 +13,7 @@
 <link rel="icon" href="img/monogram.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/Gotham-Light.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Layout: a white gallery wall. The hero and the project tiles carry the images; Worldview, Values and About are text rows (title left, text right). One vertical wordmark is the only bold gesture. */
+/* Layout: a white gallery wall. The hero and the project tiles carry the images; Worldview, Values and About are centered chapters with half a screen of white around them. One vertical wordmark is the only bold gesture. */
 @font-face { font-family: "Gotham"; src: url("fonts/Gotham-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
 @font-face { font-family: "Gotham"; src: url("fonts/Gotham-Book.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Gotham"; src: url("fonts/Gotham-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
@@ -105,7 +105,7 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
 .hero {
   display: grid; grid-template-columns: auto minmax(0, 400px) minmax(0, 40ch);
   justify-content: center; align-items: end; gap: var(--space-5);
-  padding-block: var(--space-5) calc(var(--section) / 2);
+  padding-block: var(--space-5) var(--breath);
 }
 .hero .vertical {
   writing-mode: vertical-rl; transform: rotate(180deg);
@@ -121,26 +121,24 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
   .hero-text { grid-column: 1 / -1; }
 }
 
-/* ---------- home: text rows (title left, text right) ---------- */
-.row {
-  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: var(--space-6); align-items: start;
-}
-.row-text { display: grid; gap: var(--space-5); min-width: 0; max-width: 620px; }
-.lead { font: 300 clamp(17px, 1.7vw, 21px)/1.6 var(--font-text); max-width: 52ch; }
+/* ---------- home: centered chapters, about half a screen of white between them ---------- */
+:root { --breath: max(25vh, 112px); }
+.row { display: grid; justify-items: center; text-align: center; gap: var(--space-5); padding-block: var(--breath); }
+.row-text { display: grid; justify-items: center; gap: var(--space-5); min-width: 0; width: 100%; max-width: 620px; }
+.lead { font: 300 clamp(17px, 1.7vw, 21px)/1.7 var(--font-text); max-width: 52ch; }
 .split-text { display: grid; gap: var(--space-4); align-content: start; min-width: 0; }
-@media (max-width: 860px) { .row { grid-template-columns: 1fr; gap: var(--space-4); } }
+.projects-row { padding-block: var(--breath); }
 
 .frame { aspect-ratio: 3 / 4; max-width: 100%; overflow: hidden; background: var(--surface); }
 .frame img { width: 100%; height: 100%; object-fit: cover; }
 .frame.illu img { object-fit: contain; }
 
-.values { list-style: none; margin: 0; padding: 0; display: grid; border-top: var(--hairline) solid var(--line); }
-.values li { display: grid; grid-template-columns: 40px 1fr; align-items: baseline; padding-block: 12px; border-bottom: var(--hairline) solid var(--line); }
+.values { list-style: none; margin: 0; padding: 0; display: grid; width: 100%; max-width: 440px; border-top: var(--hairline) solid var(--line); }
+.values li { display: grid; justify-items: center; gap: 2px; padding-block: 14px; border-bottom: var(--hairline) solid var(--line); }
 .values .n { font: 300 12px/18px var(--font-text); color: var(--text-muted); }
 .values .v { font: 300 clamp(15px, 1.6vw, 18px)/1.3 var(--font-brand); text-transform: uppercase; letter-spacing: .06em; }
 
-.sign { display: grid; gap: var(--space-1); }
+.sign { display: grid; justify-items: center; gap: var(--space-1); }
 
 /* ---------- home: project tiles (Paloma Wool row) ---------- */
 .tiles-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); padding-bottom: var(--space-4); }
@@ -235,14 +233,26 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
 .post-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4) var(--space-3); align-content: start; min-width: 0; }
 .post-images figure { display: grid; gap: var(--space-2); min-width: 0; align-content: start; }
 .post-images figure.wide { grid-column: 1 / -1; }
-.post-images figure.wide .frame { aspect-ratio: 4 / 3; }
+.post-images figure.wide .frame { aspect-ratio: 3 / 2; }
 
-.swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-2); border-top: var(--hairline) solid var(--line); padding-top: var(--space-3); }
-@media (max-width: 520px) { .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.swatch { display: grid; gap: var(--space-1); min-width: 0; }
-.swatch i { display: block; aspect-ratio: 1; max-width: 100%; background: var(--c); }
-.swatch b { font: 500 9px/13px var(--font-brand); letter-spacing: .08em; text-transform: uppercase; }
-.swatch span { font-size: 10px; line-height: 14px; color: var(--text-muted); overflow-wrap: anywhere; }
+.process { list-style: none; margin: 0; padding: var(--space-3) 0 0; border-top: var(--hairline) solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
+.thumb { display: block; width: 100%; padding: 0; border: var(--hairline) solid var(--line); border-radius: 0; background: var(--surface); cursor: zoom-in; aspect-ratio: 3 / 4; max-width: 100%; overflow: hidden; }
+.thumb img { width: 100%; height: 100%; object-fit: contain; transition: opacity .4s var(--ease); }
+.thumb:hover { border-color: var(--line-strong); }
+.thumb:hover img { opacity: .85; }
+
+.lightbox { position: fixed; inset: 0; z-index: 50; background: var(--surface); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: var(--space-3);
+  padding: calc(env(safe-area-inset-top, 0px) + var(--space-3)) max(var(--space-4), env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + var(--space-3)) max(var(--space-4), env(safe-area-inset-left, 0px)); }
+.lightbox-bar { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
+.lightbox figure { margin: 0; min-height: 0; display: grid; place-items: center; }
+.lightbox[hidden] { display: none; }
+.lightbox img { max-width: 100%; max-height: calc(100vh - 150px); max-height: calc(100dvh - 150px); width: auto; height: auto; object-fit: contain; }
+.lightbox-foot { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
+.lb-btn { background: none; border: 0; padding: 8px 4px; color: var(--text); cursor: pointer; font: 500 11px/16px var(--font-brand); letter-spacing: .2em; text-transform: uppercase; }
+.lb-btn:hover { color: var(--text-muted); }
+.lb-btn { white-space: nowrap; flex: 0 0 auto; }
+.lightbox-foot .caption { flex: 1 1 auto; min-width: 0; text-align: center; }
+.lb-btn[disabled] { visibility: hidden; }
 
 .post-next { border-top: var(--hairline) solid var(--line); padding-block: var(--space-4) var(--space-6); display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
 .post-next a { display: grid; gap: var(--space-1); }
@@ -293,7 +303,7 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
     </div>
   </section>
 
-  <section aria-labelledby="t-projects">
+  <section class="projects-row" aria-labelledby="t-projects">
     <div class="tiles-head">
       <h2 class="label" id="t-projects">Projects &amp; Collaborations</h2>
       <a class="label link" href="#projects">View all →</a>
@@ -418,22 +428,24 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
       <p>By employing design techniques and aesthetics drawn from organic patterns, geometric forms and textural contrasts, the collection creates a dialogue between nature and humanity, showing how the external world serves as a mirror to our inner landscapes.</p>
       <p>It is a reflection on how understanding nature’s intricate beauty and complexity allows us to reconnect with our deeper selves, and encourages a more conscious, introspective view of our relationship with the world around us.</p>
       <div class="facts">
-        <span class="label">Colour</span>
-        <div class="swatches">
-          <div class="swatch"><i style="--c:#7e9285"></i><b>Green Bay</b><span>16-5810 TCX<br>#7E9285</span></div>
-          <div class="swatch"><i style="--c:#194b46"></i><b>Forest Biome</b><span>19-5230 TCX<br>#194B46</span></div>
-          <div class="swatch"><i style="--c:#20706f"></i><b>Bayou</b><span>18-5121 TCX<br>#20706F</span></div>
-          <div class="swatch"><i style="--c:#62633d"></i><b>Sphagnum</b><span>18-0529 TCX<br>#62633D</span></div>
-          <div class="swatch"><i style="--c:#b7a990"></i><b>Fields of Rye</b><span>15-1115 TCX<br>#B7A990</span></div>
-          <div class="swatch"><i style="--c:#40332b"></i><b>Demitasse</b><span>19-0712 TCX<br>#40332B</span></div>
-        </div>
+        <span class="label">Process</span>
+        <ul class="process">
+          <li><button class="thumb" type="button" data-full="img/process/nature-moodboard.jpg" data-caption="Moodboard and fabric swatches" aria-label="Open larger: Moodboard and fabric swatches"><img src="img/process/nature-moodboard.jpg" alt="Moodboard and fabric swatches" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nature-sketchbook-1.jpg" data-caption="Sketchbook, first looks" aria-label="Open larger: Sketchbook, first looks"><img src="img/process/nature-sketchbook-1.jpg" alt="Sketchbook, first looks" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nature-sketchbook-2.jpg" data-caption="Sketchbook, felt and textures" aria-label="Open larger: Sketchbook, felt and textures"><img src="img/process/nature-sketchbook-2.jpg" alt="Sketchbook, felt and textures" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nature-sketchbook-3.jpg" data-caption="Sketchbook, moss and bark" aria-label="Open larger: Sketchbook, moss and bark"><img src="img/process/nature-sketchbook-3.jpg" alt="Sketchbook, moss and bark" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nature-lineup.jpg" data-caption="Collection overview" aria-label="Open larger: Collection overview"><img src="img/process/nature-lineup.jpg" alt="Collection overview" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/ill-nature-looks.jpg" data-caption="Illustration, front and back" aria-label="Open larger: Illustration, front and back"><img src="img/ill-nature-looks.jpg" alt="Illustration, front and back" loading="lazy"></button></li>
+        </ul>
       </div>
     </div>
     <div class="post-images">
       <figure><div class="frame"><img src="img/nature-two-models.jpg" alt="Two models outside a farmhouse, one in the moss-green felted piece, one in a felted top with brown organic patterns" loading="lazy"></div><figcaption class="caption">(1) Moss felt and patterned felt</figcaption></figure>
       <figure><div class="frame"><img src="img/nature-hay.jpg" alt="Felted cream jacket with a sheer black skirt in front of hay" loading="lazy"></div><figcaption class="caption">(2) Felted sleeves, hay</figcaption></figure>
-      <figure><div class="frame"><img src="img/nature-barn.jpg" alt="Long felted dress with brown organic patterns" loading="lazy"></div><figcaption class="caption">(3) Barn</figcaption></figure>
-      <figure><div class="frame illu"><img src="img/ill-nature-looks.jpg" alt="Fashion illustration of two looks with pleated, nature-printed panels" loading="lazy"></div><figcaption class="caption">(4) Illustration, front and back</figcaption></figure>
+      <figure class="wide"><div class="frame"><img src="img/nature-cows-crouch.jpg" alt="Model crouching in hay in front of cows, in the patterned felted dress" loading="lazy"></div><figcaption class="caption">(3) Patterned felt, in the barn</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-felted-sleeve.jpg" alt="Close-up of a wet-felted cream and moss-green sleeve" loading="lazy"></div><figcaption class="caption">(4) Felted sleeve</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-moss-felt.jpg" alt="Wet-felted moss-green top worn in a field" loading="lazy"></div><figcaption class="caption">(5) Moss felt</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-barn.jpg" alt="Long felted dress with brown organic patterns, standing in a barn" loading="lazy"></div><figcaption class="caption">(6) Long felted dress</figcaption></figure>
     </div>
   </div>
   <nav class="post-next" aria-label="More projects">
@@ -465,22 +477,19 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
         </dl>
       </div>
       <div class="facts">
-        <span class="label">Colour</span>
-        <div class="swatches">
-          <div class="swatch"><i style="--c:#e2e6e0"></i><b>Bluewash</b><span>12-4304 TCX<br>#E2E6E0</span></div>
-          <div class="swatch"><i style="--c:#d3e4f1"></i><b>Ice Melt</b><span>13-4306 TCX<br>#D3E4F1</span></div>
-          <div class="swatch"><i style="--c:#ccb390"></i><b>Almond Buff</b><span>14-1116 TCX<br>#CCB390</span></div>
-          <div class="swatch"><i style="--c:#704822"></i><b>Monk’s Robe</b><span>18-1048 TCX<br>#704822</span></div>
-          <div class="swatch"><i style="--c:#8e855f"></i><b>Boa</b><span>17-0625 TCX<br>#8E855F</span></div>
-          <div class="swatch"><i style="--c:#56352d"></i><b>Chocolate Fondant</b><span>19-1432 TCX<br>#56352D</span></div>
-        </div>
+        <span class="label">Process</span>
+        <ul class="process">
+          <li><button class="thumb" type="button" data-full="img/process/organic-moodboard.jpg" data-caption="Moodboard" aria-label="Open larger: Moodboard"><img src="img/process/organic-moodboard.jpg" alt="Moodboard" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/organic-words.jpg" data-caption="Nine words, from natural to authentic" aria-label="Open larger: Nine words, from natural to authentic"><img src="img/process/organic-words.jpg" alt="Nine words, from natural to authentic" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/organic-lineup.jpg" data-caption="Collection overview" aria-label="Open larger: Collection overview"><img src="img/process/organic-lineup.jpg" alt="Collection overview" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/organic-felted-dress-spec.jpg" data-caption="Selected look: fully felted dress, flats" aria-label="Open larger: Selected look: fully felted dress, flats"><img src="img/process/organic-felted-dress-spec.jpg" alt="Selected look: fully felted dress, flats" loading="lazy"></button></li>
+        </ul>
       </div>
     </div>
     <div class="post-images">
       <figure><div class="frame"><img src="img/felted-dress-desert.jpg" alt="Fully felted bubble-hem dress against a limestone cliff" loading="lazy"></div><figcaption class="caption">(1) The fully felted dress</figcaption></figure>
-      <figure><div class="frame illu"><img src="img/ill-felted-dress.jpg" alt="Illustration of the felted dress, front and back" loading="lazy"></div><figcaption class="caption">(2) Illustration, front and back</figcaption></figure>
-      <figure><div class="frame illu"><img src="img/ill-organic-look-01.jpg" alt="Illustration of the dress with its bubble hem" loading="lazy"></div><figcaption class="caption">(3) Bubble hem</figcaption></figure>
-      <figure><div class="frame"><img src="img/cover-felted-silhouette.jpg" alt="Black and white portrait of the felted dress in profile" loading="lazy"></div><figcaption class="caption">(4) Portfolio cover</figcaption></figure>
+      <figure class="illu"><div class="frame illu"><img src="img/ill-felted-dress.jpg" alt="Illustration of the felted dress, front and back" loading="lazy"></div><figcaption class="caption">(2) Illustration, front and back</figcaption></figure>
+      <figure><div class="frame"><img src="img/cover-felted-silhouette.jpg" alt="Black and white portrait of the felted dress in profile" loading="lazy"></div><figcaption class="caption">(3) Portfolio cover</figcaption></figure>
     </div>
   </div>
   <nav class="post-next" aria-label="More projects">
@@ -509,9 +518,18 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
           <dt>(2)</dt><dd>Duchesse satin</dd>
         </dl>
       </div>
+      <div class="facts">
+        <span class="label">Process</span>
+        <ul class="process">
+          <li><button class="thumb" type="button" data-full="img/process/nomadify-moodboard.jpg" data-caption="Moodboard: the nomad pavilion" aria-label="Open larger: Moodboard: the nomad pavilion"><img src="img/process/nomadify-moodboard.jpg" alt="Moodboard: the nomad pavilion" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nomadify-sketches.jpg" data-caption="Sketches: folded structure, mushroom leather and duchesse satin" aria-label="Open larger: Sketches: folded structure, mushroom leather and duchesse satin"><img src="img/process/nomadify-sketches.jpg" alt="Sketches: folded structure, mushroom leather and duchesse satin" loading="lazy"></button></li>
+        </ul>
+      </div>
     </div>
     <div class="post-images">
-      <figure><div class="frame"><img src="img/nomadify-satin-bag.jpg" alt="Folded rust duchesse-satin bag with a leather strap, held against the body" loading="lazy"></div><figcaption class="caption">(1) Folded satin bag, studio</figcaption></figure>
+      <figure><div class="frame"><img src="img/nomadify-satin-bag.jpg" alt="Folded rust duchesse-satin bag with a leather strap, held against the body" loading="lazy"></div><figcaption class="caption">(1) Folded satin bag</figcaption></figure>
+      <figure><div class="frame"><img src="img/nomadify-bw-portrait.jpg" alt="Black and white portrait of a model holding the folded satin bag" loading="lazy"></div><figcaption class="caption">(2) Studio portrait</figcaption></figure>
+      <figure><div class="frame"><img src="img/nomadify-bag-legs.jpg" alt="Folded rust bucket bag carried beside a raw-edged skirt and brown leather shoes" loading="lazy"></div><figcaption class="caption">(3) Bucket bag</figcaption></figure>
     </div>
   </div>
   <nav class="post-next" aria-label="More projects">
@@ -547,11 +565,20 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
           <li>(1) Sea island cotton poplin</li><li>(2) Silk taffeta</li><li>(3) Sheer organza</li><li>(4) Worsted wool</li><li>(5) Cotton coutil</li>
         </ul>
       </div>
+      <div class="facts">
+        <span class="label">Process</span>
+        <ul class="process">
+          <li><button class="thumb" type="button" data-full="img/process/duality-references.jpg" data-caption="Inspiration references and fabrics" aria-label="Open larger: Inspiration references and fabrics"><img src="img/process/duality-references.jpg" alt="Inspiration references and fabrics" loading="lazy"></button></li>
+        </ul>
+      </div>
     </div>
     <div class="post-images">
       <figure><div class="frame"><img src="img/duality-look-01.jpg" alt="Model in an oversized white shirt and black pleated skirt, seated on a stool" loading="lazy"></div><figcaption class="caption">(1) White poplin, black wool</figcaption></figure>
-      <figure><div class="frame"><img src="img/duality-portrait.jpg" alt="Close portrait of the model in a white collar with a metal clasp" loading="lazy"></div><figcaption class="caption">(2) Portrait</figcaption></figure>
-      <figure><div class="frame"><img src="img/duality-floor.jpg" alt="Model lying back on the studio floor in a black jacket and sheer organza skirt" loading="lazy"></div><figcaption class="caption">(3) Organza and taffeta</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-standing.jpg" alt="Model standing in the oversized white poplin shirt and pleated skirt" loading="lazy"></div><figcaption class="caption">(2) Standing</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-portrait.jpg" alt="Close portrait of the model in a white collar with a metal clasp" loading="lazy"></div><figcaption class="caption">(3) Portrait</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-corset.jpg" alt="Model in a black jacket with corset lacing and a gathered taffeta skirt over organza" loading="lazy"></div><figcaption class="caption">(4) Corset lacing, taffeta</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-floor.jpg" alt="Model lying back on the studio floor in a black jacket and sheer organza skirt" loading="lazy"></div><figcaption class="caption">(5) On the floor</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-legs.jpg" alt="Legs in sheer black socks and pointed shoes under a white organza skirt" loading="lazy"></div><figcaption class="caption">(6) Organza and lace</figcaption></figure>
     </div>
   </div>
   <nav class="post-next" aria-label="More projects">
@@ -559,6 +586,19 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
     <a href="#projects"><span class="label muted">Back</span><span class="heading-2">All projects</span></a>
   </nav>
 </article>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Process image" hidden>
+  <div class="lightbox-bar">
+    <span class="label muted" id="lb-count"></span>
+    <button class="lb-btn" type="button" id="lb-close">Close ×</button>
+  </div>
+  <figure><img id="lb-img" src="" alt=""></figure>
+  <div class="lightbox-foot">
+    <button class="lb-btn" type="button" id="lb-prev">← Previous</button>
+    <span class="caption" id="lb-caption"></span>
+    <button class="lb-btn" type="button" id="lb-next">Next →</button>
+  </div>
+</div>
 
 <footer class="site-foot">
   <img src="img/monogram.svg" alt="EE">
@@ -659,6 +699,39 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
       sendBtn.textContent = 'Send'; sendBtn.disabled = false;
     });
   });
+
+  /* Process images: tap a thumbnail to see it large; arrows and Esc work too. */
+  var lb = document.getElementById('lightbox'), lbImg = document.getElementById('lb-img'),
+      lbCap = document.getElementById('lb-caption'), lbCount = document.getElementById('lb-count'),
+      lbPrev = document.getElementById('lb-prev'), lbNext = document.getElementById('lb-next');
+  var group = [], at = 0, opener = null;
+  function show(i) {
+    at = i; var t = group[i];
+    lbImg.src = t.getAttribute('data-full'); lbImg.alt = t.getAttribute('data-caption');
+    lbCap.textContent = t.getAttribute('data-caption');
+    lbCount.textContent = (i + 1) + ' / ' + group.length;
+    lbPrev.disabled = i === 0; lbNext.disabled = i === group.length - 1;
+  }
+  function closeLb() { lb.hidden = true; document.body.style.overflow = ''; if (opener) opener.focus(); }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('.thumb');
+    if (!t) return;
+    group = Array.prototype.slice.call(t.closest('.process').querySelectorAll('.thumb'));
+    opener = t; show(group.indexOf(t));
+    lb.hidden = false; document.body.style.overflow = 'hidden';
+    document.getElementById('lb-close').focus();
+  });
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  lbPrev.addEventListener('click', function () { if (at > 0) show(at - 1); });
+  lbNext.addEventListener('click', function () { if (at < group.length - 1) show(at + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target.tagName === 'FIGURE') closeLb(); });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb();
+    else if (e.key === 'ArrowLeft' && at > 0) show(at - 1);
+    else if (e.key === 'ArrowRight' && at < group.length - 1) show(at + 1);
+  });
+  window.addEventListener('hashchange', function () { if (!lb.hidden) closeLb(); });
 
   var btn = document.getElementById('copy-email');
   btn.addEventListener('click', function () {
