@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ECHÉ EGEH</title>
+<meta name="description" content="ECHÉ EGEH is the fashion brand of Ece Ege, Milan: clothing that connects you back to essence.">
+<meta property="og:title" content="ECHÉ EGEH">
+<meta property="og:description" content="Clothing that connects you back to essence. Ece Ege, Milan.">
+<meta property="og:image" content="https://echeegeh.grupoarmenia.com/img/nature-moss-felt.jpg">
+<meta property="og:url" content="https://echeegeh.grupoarmenia.com/">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/monogram.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/Gotham-Light.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Layout: a white gallery wall, edited tight. Text sits beside its images (asymmetric splits, photo + illustration pairs, a row of project tiles) instead of image / gap / text stacks. One vertical wordmark is the only bold gesture. */
+@font-face { font-family: "Gotham"; src: url("fonts/Gotham-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Gotham"; src: url("fonts/Gotham-Book.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Gotham"; src: url("fonts/Gotham-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Gotham"; src: url("fonts/Gotham-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  /* ECHÉ EGEH design system — light "gallery white" theme only: the brand ground is always white */
+  --surface: #ffffff;
+  --text: #272121;          /* earth-charcoal */
+  --text-muted: #6b5e55;
+  --accent: #1f5134;        /* earth-forest: one per view */
+  --on-accent: #f8f0db;     /* earth-cream */
+  --line: #d8cfbf;
+  --line-strong: #8a7f73;
+
+  --font-brand: Gotham, Montserrat, "Helvetica Neue", Arial, sans-serif;
+  --font-text: "Arial Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --space-1: 4px; --space-2: 8px; --space-3: 16px; --space-4: 24px;
+  --space-5: 40px; --space-6: 64px; --space-7: 104px;
+  --gutter: var(--space-6);
+  --section: 144px;
+  --hairline: 1px;
+  --ease: cubic-bezier(.2,.6,.2,1);
+  color-scheme: light;
+}
+@media (max-width: 860px) { :root { --gutter: var(--space-5); --section: 96px; } }
+
+* { box-sizing: border-box; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html, body { margin: 0; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--surface); color: var(--text);
+  font: 300 15px/24px var(--font-text);
+  -webkit-font-smoothing: antialiased;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+@media (max-width: 420px) {
+  body { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+}
+img { display: block; max-width: 100%; height: auto; border-radius: 0; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: var(--hairline) solid var(--accent); outline-offset: 3px; }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; font-weight: 300; text-wrap: balance; }
+figure { margin: 0; }
+
+/* ---------- type roles ---------- */
+.label { font: 500 11px/16px var(--font-brand); letter-spacing: .2em; text-transform: uppercase; }
+.heading-1 { font: 300 clamp(26px, 3.4vw, 40px)/1.1 var(--font-brand); text-transform: uppercase; letter-spacing: .01em; }
+.heading-2 { font: 400 clamp(18px, 2vw, 22px)/1.25 var(--font-brand); }
+.numeral { font: 500 clamp(26px, 3vw, 36px)/1 var(--font-brand); }
+.caps { font: 300 12px/22px var(--font-text); letter-spacing: .04em; text-transform: uppercase; }
+.caption { font: 300 12px/18px var(--font-text); color: var(--text-muted); }
+.muted { color: var(--text-muted); }
+.link { border-bottom: var(--hairline) solid var(--line-strong); padding-bottom: 2px; transition: border-color .4s var(--ease); }
+.link:hover { border-color: var(--text); }
+
+/* ---------- header ---------- */
+.site-head {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+  padding-block: var(--space-3);
+  background: var(--surface);
+}
+.site-head .mark img { height: 11px; width: auto; }
+.site-head nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2) var(--space-4); }
+.site-head nav a { color: var(--text); padding-block: 2px; border-bottom: var(--hairline) solid transparent; transition: color .4s var(--ease), border-color .4s var(--ease); }
+.site-head nav a:hover { color: var(--text-muted); }
+.site-head nav a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+@media (max-width: 560px) {
+  .site-head nav .long { display: none; }
+  .site-head nav { flex-wrap: nowrap; gap: 12px; letter-spacing: .12em; }
+  .site-head .mark img { height: 10px; }
+}
+@media (min-width: 561px) { .site-head nav .short { display: none; } }
+
+/* ---------- views ---------- */
+.view.arrive { animation: arrive .6s var(--ease); }
+@keyframes arrive { from { opacity: .35; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .view.arrive { animation: none; } html { scroll-behavior: auto; } }
+
+section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
+
+/* ---------- home: hero ---------- */
+.hero {
+  display: grid; grid-template-columns: auto minmax(0, 400px) minmax(0, 40ch);
+  justify-content: center; align-items: end; gap: var(--space-5);
+  padding-block: var(--space-5) calc(var(--section) / 2);
+}
+.hero .vertical {
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  font: 700 clamp(22px, 3.9vw, 48px)/1 var(--font-brand); letter-spacing: .3em;
+  text-transform: uppercase; white-space: nowrap; margin: 0; align-self: end;
+}
+.hero-text { display: grid; gap: var(--space-4); padding-bottom: var(--space-1); }
+.hero-text .caps { max-width: 44ch; }
+@media (max-width: 860px) {
+  .hero { grid-template-columns: auto minmax(0, 1fr); gap: var(--space-4) var(--space-3); }
+  .hero .vertical { font-size: clamp(20px, 6.2vw, 44px); }
+  .hero figure { max-width: 420px; }
+  .hero-text { grid-column: 1 / -1; }
+}
+
+/* ---------- home: splits (text beside images) ---------- */
+.split {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-6); align-items: center;
+}
+.split.flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.split.flip .split-text { order: 2; }
+.split-text { display: grid; gap: var(--space-4); align-content: center; min-width: 0; }
+.split-text .body { max-width: 52ch; }
+@media (max-width: 860px) {
+  .split, .split.flip { grid-template-columns: 1fr; gap: var(--space-4); }
+  .split.flip .split-text { order: 0; }
+}
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); align-items: start; max-width: 680px; }
+.split:not(.flip) .pair { justify-self: end; width: 100%; }
+.pair figure { display: grid; gap: var(--space-2); min-width: 0; }
+.frame { aspect-ratio: 3 / 4; max-width: 100%; overflow: hidden; background: var(--surface); }
+.frame img { width: 100%; height: 100%; object-fit: cover; }
+.frame.illu img { object-fit: contain; }
+
+.values { list-style: none; margin: 0; padding: 0; display: grid; border-top: var(--hairline) solid var(--line); }
+.values li { display: grid; grid-template-columns: 40px 1fr; align-items: baseline; padding-block: 12px; border-bottom: var(--hairline) solid var(--line); }
+.values .n { font: 300 12px/18px var(--font-text); color: var(--text-muted); }
+.values .v { font: 300 clamp(15px, 1.6vw, 18px)/1.3 var(--font-brand); text-transform: uppercase; letter-spacing: .06em; }
+
+.sign { display: grid; gap: var(--space-1); }
+
+/* ---------- home: project tiles (Paloma Wool row) ---------- */
+.tiles-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); padding-bottom: var(--space-4); }
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4) var(--space-3); }
+@media (max-width: 860px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tile a { display: grid; gap: var(--space-2); }
+.tile .frame img { transition: opacity .5s var(--ease); }
+.tile a:hover .frame img { opacity: .82; }
+.tile .t { font: 400 13px/18px var(--font-brand); }
+.tile .t b { font-weight: 500; margin-right: 6px; }
+
+/* ---------- home: contact ---------- */
+.contact { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-6); align-items: start; }
+@media (max-width: 860px) { .contact { grid-template-columns: 1fr; gap: var(--space-4); } }
+.contact-list { list-style: none; margin: 0; padding: 0; max-width: 520px; border-top: var(--hairline) solid var(--line); }
+.contact-list li {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  padding-block: 14px; border-bottom: var(--hairline) solid var(--line); min-width: 0;
+}
+.contact-list .k { flex: 0 0 96px; }
+@media (max-width: 420px) { .contact-list .k { flex-basis: 84px; } .contact-list li { gap: var(--space-2); } .contact-list .val { overflow-wrap: normal; word-break: normal; } }
+.contact-list .val { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; user-select: all; }
+.contact-list a.val:hover { color: var(--text-muted); }
+.copy {
+  flex: 0 0 auto; background: none; border: var(--hairline) solid var(--line-strong); border-radius: 999px;
+  color: var(--text); padding: 3px 10px; cursor: pointer; font: 500 10px/14px var(--font-brand); letter-spacing: .2em; text-transform: uppercase;
+}
+.copy:hover { border-color: var(--text); }
+
+.contact + .contact { padding-top: 0; }
+#view-home > section:last-child { padding-bottom: var(--section); }
+.form { display: grid; gap: var(--space-4); max-width: 520px; min-width: 0; }
+.field { display: grid; gap: var(--space-2); }
+.field input, .field textarea {
+  width: 100%; border: 0; border-bottom: var(--hairline) solid var(--line-strong); border-radius: 0;
+  background: var(--surface); color: var(--text); padding: 6px 0 8px;
+  font: 300 15px/22px var(--font-text);
+}
+.field textarea { resize: vertical; min-height: 104px; border: var(--hairline) solid var(--line-strong); padding: 10px 12px; }
+.field input:focus-visible, .field textarea:focus-visible { outline: var(--hairline) solid var(--accent); outline-offset: 3px; }
+.field [aria-invalid="true"] { border-color: #8a2f1f; }
+.form-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+.form-foot .caption { flex: 1 1 220px; min-width: 0; }
+.form-foot .caption.error { color: #8a2f1f; }
+.send {
+  background: var(--accent); color: var(--on-accent); border: var(--hairline) solid var(--accent); border-radius: 0;
+  padding: 12px 32px; cursor: pointer; transition: opacity .4s var(--ease);
+}
+.send:hover { opacity: .88; }
+.send:disabled { opacity: .5; cursor: default; }
+
+.site-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); padding-block: var(--space-3) var(--space-4); border-top: var(--hairline) solid var(--line); }
+.site-foot img { height: 16px; width: auto; }
+
+/* ---------- projects index (feed, Paloma Wool style) ---------- */
+.index-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--space-3) var(--space-5); padding-block: var(--space-5) var(--space-4); }
+.index-head p { max-width: 46ch; }
+.index-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5) var(--space-3);
+  padding-bottom: var(--space-6);
+}
+@media (max-width: 860px) { .index-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5) var(--space-3); } }
+.entry a { display: grid; gap: var(--space-2); }
+.entry .frame img { transition: opacity .5s var(--ease); }
+.entry a:hover .frame img { opacity: .82; }
+.entry h2 { font: 400 13px/18px var(--font-brand); }
+.entry h2 b { font-weight: 500; margin-right: 6px; }
+.later { border-top: var(--hairline) solid var(--line); padding-block: var(--space-3) var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+
+/* ---------- project post ---------- */
+.post-top { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding-block: var(--space-4) 0; }
+.post-top a:hover { color: var(--text-muted); }
+.post-body {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-6);
+  padding-block: var(--space-5) var(--space-6);
+}
+@media (max-width: 860px) { .post-body { grid-template-columns: 1fr; gap: var(--space-5); } }
+.post-text { display: grid; gap: var(--space-4); align-content: start; min-width: 0; }
+@media (min-width: 861px) { .post-text { position: sticky; top: 72px; } }
+.post-open { display: grid; gap: var(--space-3); padding-bottom: var(--space-2); }
+.post-text p { max-width: 58ch; }
+.facts { display: grid; gap: var(--space-2); }
+.facts dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-4); border-top: var(--hairline) solid var(--line); padding-top: var(--space-3); }
+.facts dt { font: 500 11px/20px var(--font-brand); letter-spacing: .2em; text-transform: uppercase; }
+.facts dd { margin: 0; font-size: 13px; line-height: 20px; }
+.numlist { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); border-top: var(--hairline) solid var(--line); padding-top: var(--space-3); }
+.numlist li { font-size: 13px; line-height: 20px; }
+.refs { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-2); border-top: var(--hairline) solid var(--line); padding-top: var(--space-3); font-size: 13px; line-height: 20px; }
+
+.post-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4) var(--space-3); align-content: start; min-width: 0; }
+.post-images figure { display: grid; gap: var(--space-2); min-width: 0; align-content: start; }
+.post-images figure.wide { grid-column: 1 / -1; }
+.post-images figure.wide .frame { aspect-ratio: 4 / 3; }
+
+.swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-2); border-top: var(--hairline) solid var(--line); padding-top: var(--space-3); }
+@media (max-width: 520px) { .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.swatch { display: grid; gap: var(--space-1); min-width: 0; }
+.swatch i { display: block; aspect-ratio: 1; max-width: 100%; background: var(--c); }
+.swatch b { font: 500 9px/13px var(--font-brand); letter-spacing: .08em; text-transform: uppercase; }
+.swatch span { font-size: 10px; line-height: 14px; color: var(--text-muted); overflow-wrap: anywhere; }
+
+.post-next { border-top: var(--hairline) solid var(--line); padding-block: var(--space-4) var(--space-6); display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+.post-next a { display: grid; gap: var(--space-1); }
+.post-next a:last-child { text-align: right; margin-left: auto; }
+.post-next a:hover .heading-2 { color: var(--text-muted); }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <a class="mark" href="#home" aria-label="ECHÉ EGEH home"><img src="img/wordmark.svg" alt="ECHÉ EGEH"></a>
+  <nav class="label" aria-label="Main">
+    <a href="#home" data-nav="home">Home</a>
+    <a href="#projects" data-nav="projects"><span class="long">Projects &amp; Collaborations</span><span class="short">Projects</span></a>
+    <a href="#contact" data-nav="contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ============ HOME ============ -->
+<main class="view" data-view="home" id="view-home">
+  <section class="hero" aria-label="Intro">
+    <p class="vertical" aria-hidden="true">Eché Egeh</p>
+    <figure>
+      <img src="img/nature-moss-felt.jpg" width="990" height="1400" alt="Model in the wet-felted moss-green piece from On the Nature of Us, sitting in a field">
+    </figure>
+    <div class="hero-text">
+      <h1 class="label">Clothing that connects you back to essence</h1>
+      <p class="caps">ECHÉ EGEH is a concept built around the idea of reconnecting with essence. The vision is to create clothing that goes beyond function or trend, serving as a reminder of authenticity and inner grounding.</p>
+      <p class="caption">Ece Ege · Milan</p>
+    </div>
+  </section>
+
+  <section class="split" id="worldview" aria-labelledby="t-worldview">
+    <div class="split-text">
+      <h2 class="heading-1" id="t-worldview">Worldview</h2>
+      <p class="body">Rooted in the belief that exploring nature allows us to rediscover the hidden depths of our humanity, ECHÉ EGEH positions clothing as a medium for reconnection, offering more than garments, offering perspective.</p>
+    </div>
+    <div class="pair">
+      <figure>
+        <div class="frame"><img src="img/nature-hay.jpg" alt="Model in a felted cream jacket and black skirt in front of a hay bale"></div>
+        <figcaption class="caption">On the Nature of Us</figcaption>
+      </figure>
+      <figure>
+        <div class="frame illu"><img src="img/ill-nature-looks.jpg" alt="Fashion illustration of the jacket looks, front and back"></div>
+        <figcaption class="caption">Illustration</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="split flip" id="values" aria-labelledby="t-values">
+    <div class="split-text">
+      <h2 class="heading-1" id="t-values">Values</h2>
+      <ol class="values">
+        <li><span class="n">(1)</span><span class="v">Essence over excess</span></li>
+        <li><span class="n">(2)</span><span class="v">Raw truth in materials</span></li>
+        <li><span class="n">(3)</span><span class="v">Intimacy &amp; ritual</span></li>
+        <li><span class="n">(4)</span><span class="v">Timeless uniqueness</span></li>
+      </ol>
+    </div>
+    <div class="pair">
+      <figure>
+        <div class="frame"><img src="img/felted-dress-desert.jpg" alt="Model in the fully felted bubble-hem dress against a limestone cliff"></div>
+        <figcaption class="caption">Felted dress</figcaption>
+      </figure>
+      <figure>
+        <div class="frame illu"><img src="img/ill-felted-dress.jpg" alt="Illustration of the felted dress, front and back"></div>
+        <figcaption class="caption">Front and back</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-projects">
+    <div class="tiles-head">
+      <h2 class="label" id="t-projects">Projects &amp; Collaborations</h2>
+      <a class="label link" href="#projects">View all →</a>
+    </div>
+    <ol class="tiles">
+      <li class="tile"><a href="#nature-of-us"><div class="frame"><img src="img/nature-barn.jpg" alt=""></div><span class="t"><b>01.</b>On the Nature of Us</span></a></li>
+      <li class="tile"><a href="#organic-form"><div class="frame"><img src="img/cover-felted-silhouette.jpg" alt=""></div><span class="t"><b>02.</b>Organic Form</span></a></li>
+      <li class="tile"><a href="#nomadify"><div class="frame"><img src="img/nomadify-satin-bag.jpg" alt=""></div><span class="t"><b>03.</b>Nomadify</span></a></li>
+      <li class="tile"><a href="#structured-duality"><div class="frame"><img src="img/duality-look-01.jpg" alt=""></div><span class="t"><b>04.</b>Structured Duality</span></a></li>
+    </ol>
+  </section>
+
+  <section class="split" id="about" aria-labelledby="t-about">
+    <div class="split-text">
+      <h2 class="heading-1" id="t-about">About</h2>
+      <p class="body">ECHÉ EGEH is my name and the name of this project. It is about clothing, and the quiet rituals and emotions that unfold around it: a space where dressing becomes a return to essence.</p>
+      <div class="sign">
+        <span class="label">Ece Ege</span>
+        <span class="caption">Founder &amp; Creative Director · Based in Milan</span>
+      </div>
+    </div>
+    <div class="pair">
+      <figure>
+        <div class="frame"><img src="img/duality-portrait.jpg" alt="Close portrait of a model in a white collar with a metal clasp"></div>
+        <figcaption class="caption">Structured Duality</figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><img src="img/nature-felted-sleeve.jpg" alt="Close-up of a wet-felted cream and moss-green sleeve on a beige jacket, against hay"></div>
+        <figcaption class="caption">Felted sleeve</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="t-contact">
+    <h2 class="heading-1" id="t-contact">Contact</h2>
+    <ul class="contact-list">
+      <li>
+        <span class="k label">Email</span>
+        <a class="val" id="email" href="mailto:ecege3e@gmail.com">ecege3e@gmail.com</a>
+        <button class="copy" type="button" id="copy-email" data-copy="ecege3e@gmail.com">Copy</button>
+      </li>
+      <li>
+        <span class="k label">Instagram</span>
+        <a class="val" href="https://www.instagram.com/eche.egeh/" target="_blank" rel="noopener">@eche.egeh</a>
+        <span class="caption">↗</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="contact" aria-labelledby="t-write">
+    <div class="split-text">
+      <h2 class="label" id="t-write">Write to us</h2>
+      <p class="caption">For collaborations, commissions and press. Leave your email so Ece can reply.</p>
+    </div>
+    <form class="form" id="contact-form" novalidate>
+      <div class="field">
+        <label class="label" for="contact-name">Name</label>
+        <input id="contact-name" name="name" type="text" autocomplete="name" required maxlength="120">
+      </div>
+      <div class="field">
+        <label class="label" for="contact-email">Email</label>
+        <input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="200">
+      </div>
+      <div class="field">
+        <label class="label" for="contact-message">Message</label>
+        <textarea id="contact-message" name="message" rows="5" required maxlength="4000"></textarea>
+      </div>
+      <div class="form-foot">
+        <p class="caption" id="form-status" role="status" aria-live="polite"></p>
+        <button class="send label" type="submit" id="contact-send">Send</button>
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<!-- ============ PROJECTS INDEX ============ -->
+<main class="view" data-view="projects" id="view-projects" hidden>
+  <header class="index-head">
+    <h1 class="heading-1">Projects &amp; Collaborations</h1>
+    <p class="caption">Collections and objects from the 2025 Fashion Design portfolio. Each entry opens into its story, materials and images.</p>
+  </header>
+
+  <ol class="index-grid">
+    <li class="entry">
+      <a href="#nature-of-us">
+        <div class="frame"><img src="img/nature-moss-felt.jpg" alt="" loading="lazy"></div>
+        <h2><b>01.</b>On the Nature of Us</h2>
+        <span class="caption">Collection — 2025</span>
+      </a>
+    </li>
+    <li class="entry">
+      <a href="#organic-form">
+        <div class="frame"><img src="img/felted-dress-desert.jpg" alt="" loading="lazy"></div>
+        <h2><b>02.</b>Organic Form</h2>
+        <span class="caption">Collection — 2025</span>
+      </a>
+    </li>
+    <li class="entry">
+      <a href="#nomadify">
+        <div class="frame"><img src="img/nomadify-satin-bag.jpg" alt="" loading="lazy"></div>
+        <h2><b>03.</b>Nomadify</h2>
+        <span class="caption">Accessories — 2025</span>
+      </a>
+    </li>
+    <li class="entry">
+      <a href="#structured-duality">
+        <div class="frame"><img src="img/duality-look-01.jpg" alt="" loading="lazy"></div>
+        <h2><b>04.</b>Structured Duality: Femininity in Control</h2>
+        <span class="caption">Collection — 2025</span>
+      </a>
+    </li>
+  </ol>
+
+  <div class="later">
+    <span class="label">Collaborations</span>
+    <span class="caption">New projects and collaborations will be added here.</span>
+  </div>
+</main>
+
+<!-- ============ POST 01 ============ -->
+<article class="view" data-view="nature-of-us" hidden>
+  <div class="post-top"><a class="label" href="#projects">← All projects</a><span class="label muted">01. / 04.</span></div>
+  <div class="post-body">
+    <div class="post-text">
+      <header class="post-open">
+        <span class="numeral">01.</span>
+        <h1 class="heading-1">On the Nature of Us</h1>
+        <span class="caption">Collection · Fashion Design BA, 2025</span>
+      </header>
+      <p>The collection expresses the connection between nature and humanity, not through the use of natural materials but through visual and conceptual elements that evoke nature’s presence in form, shape and structure.</p>
+      <p>By employing design techniques and aesthetics drawn from organic patterns, geometric forms and textural contrasts, the collection creates a dialogue between nature and humanity, showing how the external world serves as a mirror to our inner landscapes.</p>
+      <p>It is a reflection on how understanding nature’s intricate beauty and complexity allows us to reconnect with our deeper selves, and encourages a more conscious, introspective view of our relationship with the world around us.</p>
+      <div class="facts">
+        <span class="label">Colour</span>
+        <div class="swatches">
+          <div class="swatch"><i style="--c:#7e9285"></i><b>Green Bay</b><span>16-5810 TCX<br>#7E9285</span></div>
+          <div class="swatch"><i style="--c:#194b46"></i><b>Forest Biome</b><span>19-5230 TCX<br>#194B46</span></div>
+          <div class="swatch"><i style="--c:#20706f"></i><b>Bayou</b><span>18-5121 TCX<br>#20706F</span></div>
+          <div class="swatch"><i style="--c:#62633d"></i><b>Sphagnum</b><span>18-0529 TCX<br>#62633D</span></div>
+          <div class="swatch"><i style="--c:#b7a990"></i><b>Fields of Rye</b><span>15-1115 TCX<br>#B7A990</span></div>
+          <div class="swatch"><i style="--c:#40332b"></i><b>Demitasse</b><span>19-0712 TCX<br>#40332B</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="post-images">
+      <figure><div class="frame"><img src="img/nature-moss-felt.jpg" alt="Wet-felted moss-green top worn in a field" loading="lazy"></div><figcaption class="caption">(1) Moss felt</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-hay.jpg" alt="Felted cream jacket with a sheer black skirt in front of hay" loading="lazy"></div><figcaption class="caption">(2) Felted sleeves, hay</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-barn.jpg" alt="Long felted dress with brown organic patterns" loading="lazy"></div><figcaption class="caption">(3) Barn</figcaption></figure>
+      <figure><div class="frame illu"><img src="img/ill-nature-looks.jpg" alt="Fashion illustration of two looks with pleated, nature-printed panels" loading="lazy"></div><figcaption class="caption">(4) Illustration, front and back</figcaption></figure>
+    </div>
+  </div>
+  <nav class="post-next" aria-label="More projects">
+    <a href="#projects"><span class="label muted">Back</span><span class="heading-2">All projects</span></a>
+    <a href="#organic-form"><span class="label muted">Next 02.</span><span class="heading-2">Organic Form</span></a>
+  </nav>
+</article>
+
+<!-- ============ POST 02 ============ -->
+<article class="view" data-view="organic-form" hidden>
+  <div class="post-top"><a class="label" href="#projects">← All projects</a><span class="label muted">02. / 04.</span></div>
+  <div class="post-body">
+    <div class="post-text">
+      <header class="post-open">
+        <span class="numeral">02.</span>
+        <h1 class="heading-1">Organic Form</h1>
+        <span class="caption">Collection · Fashion Design BA, 2025</span>
+      </header>
+      <p>Organic Form begins with a moodboard of raw fibre, clay-brown wool, poppy heads and open landscape. Nine words hold the collection together, and its volumes grow from them: balloon trousers, cocoon sleeves and bubble hems.</p>
+      <ul class="numlist">
+        <li>(1) Natural</li><li>(2) Organic</li><li>(3) Earthy</li><li>(4) Raw</li><li>(5) Botanical</li><li>(6) Fibrous</li><li>(7) Warm</li><li>(8) Calm</li><li>(9) Authentic</li>
+      </ul>
+      <div class="facts">
+        <span class="label">Selected look: fully felted dress</span>
+        <dl>
+          <dt>Shape</dt><dd>A-line</dd>
+          <dt>Armhole</dt><dd>Wide opening</dd>
+          <dt>Hem</dt><dd>Bubble hem</dd>
+        </dl>
+      </div>
+      <div class="facts">
+        <span class="label">Colour</span>
+        <div class="swatches">
+          <div class="swatch"><i style="--c:#e2e6e0"></i><b>Bluewash</b><span>12-4304 TCX<br>#E2E6E0</span></div>
+          <div class="swatch"><i style="--c:#d3e4f1"></i><b>Ice Melt</b><span>13-4306 TCX<br>#D3E4F1</span></div>
+          <div class="swatch"><i style="--c:#ccb390"></i><b>Almond Buff</b><span>14-1116 TCX<br>#CCB390</span></div>
+          <div class="swatch"><i style="--c:#704822"></i><b>Monk’s Robe</b><span>18-1048 TCX<br>#704822</span></div>
+          <div class="swatch"><i style="--c:#8e855f"></i><b>Boa</b><span>17-0625 TCX<br>#8E855F</span></div>
+          <div class="swatch"><i style="--c:#56352d"></i><b>Chocolate Fondant</b><span>19-1432 TCX<br>#56352D</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="post-images">
+      <figure><div class="frame"><img src="img/felted-dress-desert.jpg" alt="Fully felted bubble-hem dress against a limestone cliff" loading="lazy"></div><figcaption class="caption">(1) The fully felted dress</figcaption></figure>
+      <figure><div class="frame illu"><img src="img/ill-felted-dress.jpg" alt="Illustration of the felted dress, front and back" loading="lazy"></div><figcaption class="caption">(2) Illustration, front and back</figcaption></figure>
+      <figure><div class="frame illu"><img src="img/ill-organic-look-01.jpg" alt="Illustration of the dress with its bubble hem" loading="lazy"></div><figcaption class="caption">(3) Bubble hem</figcaption></figure>
+      <figure><div class="frame"><img src="img/cover-felted-silhouette.jpg" alt="Black and white portrait of the felted dress in profile" loading="lazy"></div><figcaption class="caption">(4) Portfolio cover</figcaption></figure>
+    </div>
+  </div>
+  <nav class="post-next" aria-label="More projects">
+    <a href="#nature-of-us"><span class="label muted">Previous 01.</span><span class="heading-2">On the Nature of Us</span></a>
+    <a href="#nomadify"><span class="label muted">Next 03.</span><span class="heading-2">Nomadify</span></a>
+  </nav>
+</article>
+
+<!-- ============ POST 03 ============ -->
+<article class="view" data-view="nomadify" hidden>
+  <div class="post-top"><a class="label" href="#projects">← All projects</a><span class="label muted">03. / 04.</span></div>
+  <div class="post-body">
+    <div class="post-text">
+      <header class="post-open">
+        <span class="numeral">03.</span>
+        <h1 class="heading-1">Nomadify</h1>
+        <span class="caption">Accessories · In dialogue with Dina Haddadin &amp; Rasem Kamal</span>
+      </header>
+      <p>This project converges with two muses, Dina Haddadin and Rasem Kamal, creators of a sustainable nomadic pavilion in the Jordan desert, and gives birth to Futuristic Nomad.</p>
+      <p>Their pavilion reinterprets a local Bedouin tent: a corten steel frame covered in goat hair for cooling, with a self-sustained drinking fountain that becomes a cooling surface and a welcoming oasis. The permeable structure blends with its surroundings yet stands out as a sanctuary in the nomads’ land.</p>
+      <p>The collection blends futuristic elements with nomadic aesthetics, embodying adaptability, resilience and eco-consciousness. It is a visual narrative about the interplay between architecture and fashion, and a celebration of cultural fusion and sustainability.</p>
+      <div class="facts">
+        <span class="label">Materials</span>
+        <dl>
+          <dt>(1)</dt><dd>Mushroom leather</dd>
+          <dt>(2)</dt><dd>Duchesse satin</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="post-images">
+      <figure><div class="frame"><img src="img/nomadify-satin-bag.jpg" alt="Folded rust duchesse-satin bag with a leather strap, held against the body" loading="lazy"></div><figcaption class="caption">(1) Folded satin bag, studio</figcaption></figure>
+    </div>
+  </div>
+  <nav class="post-next" aria-label="More projects">
+    <a href="#organic-form"><span class="label muted">Previous 02.</span><span class="heading-2">Organic Form</span></a>
+    <a href="#structured-duality"><span class="label muted">Next 04.</span><span class="heading-2">Structured Duality</span></a>
+  </nav>
+</article>
+
+<!-- ============ POST 04 ============ -->
+<article class="view" data-view="structured-duality" hidden>
+  <div class="post-top"><a class="label" href="#projects">← All projects</a><span class="label muted">04. / 04.</span></div>
+  <div class="post-body">
+    <div class="post-text">
+      <header class="post-open">
+        <span class="numeral">04.</span>
+        <h1 class="heading-1">Structured Duality: Femininity in Control</h1>
+        <span class="caption">Collection · Fashion Design BA, 2025</span>
+      </header>
+      <p>This collection embodies the quiet tension between strength and vulnerability. It explores the interplay of contrast: control and softness, exposure and concealment, precision and fluidity. Each look captures a state of balance where opposites coexist, in a visual language that is both assertive and introspective.</p>
+      <p>The atmosphere is charged with a subtle intensity. Emotions are contained, yet present. There is an elegance in restraint, a kind of calm rebellion. The woman at the centre of this narrative owns her complexity; she does not perform it. This is a story of contrast, not conflict, of harmony found in paradox.</p>
+      <div class="facts">
+        <span class="label">Inspiration</span>
+        <ul class="refs">
+          <li>Avant-garde femininity: Ann Demeulemeester, Helmut Lang, Yohji Yamamoto.</li>
+          <li>Gothic romanticism: the dark elegance of corsetry and Victorian underlayers.</li>
+          <li>Post-apocalyptic softness: garments that armour and expose at once.</li>
+          <li>90s minimalism meets 2000s subversion: clean lines disrupted by unexpected cuts and layers.</li>
+        </ul>
+      </div>
+      <div class="facts">
+        <span class="label">Fabrics</span>
+        <ul class="numlist">
+          <li>(1) Sea island cotton poplin</li><li>(2) Silk taffeta</li><li>(3) Sheer organza</li><li>(4) Worsted wool</li><li>(5) Cotton coutil</li>
+        </ul>
+      </div>
+    </div>
+    <div class="post-images">
+      <figure><div class="frame"><img src="img/duality-look-01.jpg" alt="Model in an oversized white shirt and black pleated skirt, seated on a stool" loading="lazy"></div><figcaption class="caption">(1) White poplin, black wool</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-portrait.jpg" alt="Close portrait of the model in a white collar with a metal clasp" loading="lazy"></div><figcaption class="caption">(2) Portrait</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-floor.jpg" alt="Model lying back on the studio floor in a black jacket and sheer organza skirt" loading="lazy"></div><figcaption class="caption">(3) Organza and taffeta</figcaption></figure>
+    </div>
+  </div>
+  <nav class="post-next" aria-label="More projects">
+    <a href="#nomadify"><span class="label muted">Previous 03.</span><span class="heading-2">Nomadify</span></a>
+    <a href="#projects"><span class="label muted">Back</span><span class="heading-2">All projects</span></a>
+  </nav>
+</article>
+
+<footer class="site-foot">
+  <img src="img/monogram.svg" alt="EE">
+  <span class="caption">All rights reserved © 2026 by Ece Ege · Milan</span>
+</footer>
+
+<script>
+(function () {
+  var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  var homeSections = ['worldview', 'values', 'about', 'contact'];
+  var posts = ['nature-of-us', 'organic-form', 'nomadify', 'structured-duality'];
+
+  function route() {
+    var h = (location.hash || '').replace('#', '');
+    var target = 'home', anchor = null;
+    if (h === 'projects' || posts.indexOf(h) > -1) target = h;
+    else if (homeSections.indexOf(h) > -1) { target = 'home'; anchor = h; }
+
+    var changed = false;
+    views.forEach(function (v) {
+      var show = v.getAttribute('data-view') === target;
+      if (show && v.hidden) changed = true;
+      v.hidden = !show;
+      if (show && changed && booted) { v.classList.remove('arrive'); void v.offsetWidth; v.classList.add('arrive'); }
+    });
+
+    var navKey = posts.indexOf(target) > -1 ? 'projects' : (anchor === 'contact' ? 'contact' : target);
+    document.querySelectorAll('[data-nav]').forEach(function (a) {
+      if (a.getAttribute('data-nav') === navKey) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+
+    if (anchor) {
+      var el = document.getElementById(anchor);
+      if (el) requestAnimationFrame(function () { el.scrollIntoView({ block: 'start' }); });
+    } else if (changed || target !== 'home' || h === 'home') {
+      window.scrollTo(0, 0);
+    }
+    var view = document.querySelector('.view[data-view="' + target + '"] h1');
+    document.title = target === 'home' ? 'ECHÉ EGEH' : ((view ? view.textContent : '') + ' — ECHÉ EGEH');
+  }
+  var booted = false;
+  window.addEventListener('hashchange', route);
+  route();
+  booted = true;
+
+  /* Contact form: messages are stored in this page's shared database (messages/<sender>/sent),
+     readable by the owner and editors only. Without the database it says so and points to email. */
+  var dbReady = (window.claude && window.claude.use) ? window.claude.use('db') : Promise.resolve(null);
+  var userReady = (window.claude && window.claude.use) ? window.claude.use('user') : Promise.resolve(null);
+  var form = document.getElementById('contact-form');
+  var statusEl = document.getElementById('form-status');
+  var sendBtn = document.getElementById('contact-send');
+  function say(text, isError) { statusEl.textContent = text; statusEl.classList.toggle('error', !!isError); }
+  var FALLBACK = 'This view can’t send messages. Please write to ecege3e@gmail.com instead.';
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var fields = { name: form.elements.name, email: form.elements.email, message: form.elements.message };
+    var bad = null;
+    Object.keys(fields).forEach(function (k) {
+      var el = fields[k], v = el.value.trim();
+      var ok = v.length > 0 && (k !== 'email' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+      el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+      if (!ok && !bad) bad = el;
+    });
+    if (bad) {
+      say(bad === fields.email && fields.email.value.trim() ? 'Please enter a valid email address.' : 'Please fill in your name, email and message.', true);
+      bad.focus(); return;
+    }
+    sendBtn.disabled = true; sendBtn.textContent = 'Sending…'; say('');
+    Promise.all([dbReady, userReady]).then(function (r) {
+      var db = r[0], user = r[1];
+      if (!db || !user) throw new Error('standalone');
+      return user.id().then(function (uid) {
+        if (!uid) throw new Error('unavailable');
+        return db.doc('messages/' + uid).collection('sent').add({
+          name: fields.name.value.trim(),
+          email: fields.email.value.trim(),
+          message: fields.message.value.trim(),
+          sentAt: new Date().toISOString()
+        });
+      });
+    }).then(function () {
+      form.reset();
+      say('Thank you. Your message has been received.');
+      sendBtn.textContent = 'Sent';
+      setTimeout(function () { sendBtn.textContent = 'Send'; sendBtn.disabled = false; }, 2400);
+    }).catch(function (err) {
+      if (err && err.message === 'standalone') {
+        var subject = 'Message from ' + fields.name.value.trim() + ' via echeegeh.grupoarmenia.com';
+        var text = fields.message.value.trim() + '\n\n' + fields.name.value.trim() + '\n' + fields.email.value.trim();
+        window.location.href = 'mailto:ecege3e@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
+        say('Your email app should open with your message ready to send. If it doesn’t, write to ecege3e@gmail.com.');
+        sendBtn.textContent = 'Send'; sendBtn.disabled = false;
+        return;
+      }
+      say(FALLBACK, true);
+      sendBtn.textContent = 'Send'; sendBtn.disabled = false;
+    });
+  });
+
+  var btn = document.getElementById('copy-email');
+  btn.addEventListener('click', function () {
+    var text = btn.getAttribute('data-copy');
+    function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1800); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+    }
+    try {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>

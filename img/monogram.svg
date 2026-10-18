@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="318.00" height="194.50" viewBox="29.25 85.50 318.00 194.50" version="1.2">
+<defs>
+<g>
+<symbol overflow="visible" id="glyph0-0">
+<path style="stroke:none;" d="M 0 -222.40625 L 139 -222.40625 L 139 55.609375 L 0 55.609375 Z M 69.5 -100.078125 L 119.265625 -208.515625 L 19.734375 -208.515625 Z M 61.71875 -83.40625 L 13.90625 -187.9375 L 13.90625 21.125 Z M 77.28125 -83.40625 L 125.109375 21.125 L 125.109375 -187.9375 Z M 19.734375 41.703125 L 119.265625 41.703125 L 69.5 -66.71875 Z M 19.734375 41.703125 "></path>
+</symbol>
+<symbol overflow="visible" id="glyph0-1">
+<path style="stroke:none;" d="M 23.359375 -194.609375 L 170.140625 -194.609375 L 170.140625 -156.515625 L 65.890625 -156.515625 L 65.890625 -117.046875 L 157.640625 -117.046875 L 157.640625 -78.953125 L 65.890625 -78.953125 L 65.890625 -38.09375 L 171.53125 -38.09375 L 171.53125 0 L 23.359375 0 Z M 23.359375 -194.609375 "></path>
+</symbol>
+</g>
+<clipPath id="clip1">
+  <rect x="0" y="0" width="267" height="337"></rect>
+</clipPath>
+<g id="surface5" clip-path="url(#clip1)">
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+  <use xlink:href="#glyph0-1" x="0.170695" y="267.128514"></use>
+</g>
+</g>
+<clipPath id="clip2">
+  <rect x="0" y="0" width="200" height="337"></rect>
+</clipPath>
+<g id="surface8" clip-path="url(#clip2)">
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+  <use xlink:href="#glyph0-1" x="0.876458" y="267.128514"></use>
+</g>
+</g>
+</defs>
+<g id="surface1">
+<use xlink:href="#surface5" transform="matrix(1,0,0,1,6,13)"></use>
+<use xlink:href="#surface8" transform="matrix(1,0,0,1,175,13)"></use>
+</g>
+</svg>
