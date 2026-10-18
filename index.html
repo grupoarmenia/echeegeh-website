@@ -13,7 +13,7 @@
 <link rel="icon" href="img/monogram.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/Gotham-Light.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Layout: a white gallery wall, edited tight. Text sits beside its images (asymmetric splits, photo + illustration pairs, a row of project tiles) instead of image / gap / text stacks. One vertical wordmark is the only bold gesture. */
+/* Layout: a white gallery wall. The hero and the project tiles carry the images; Worldview, Values and About are text rows (title left, text right). One vertical wordmark is the only bold gesture. */
 @font-face { font-family: "Gotham"; src: url("fonts/Gotham-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
 @font-face { font-family: "Gotham"; src: url("fonts/Gotham-Book.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Gotham"; src: url("fonts/Gotham-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
@@ -121,23 +121,16 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
   .hero-text { grid-column: 1 / -1; }
 }
 
-/* ---------- home: splits (text beside images) ---------- */
-.split {
+/* ---------- home: text rows (title left, text right) ---------- */
+.row {
   display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: var(--space-6); align-items: center;
+  gap: var(--space-6); align-items: start;
 }
-.split.flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-.split.flip .split-text { order: 2; }
-.split-text { display: grid; gap: var(--space-4); align-content: center; min-width: 0; }
-.split-text .body { max-width: 52ch; }
-@media (max-width: 860px) {
-  .split, .split.flip { grid-template-columns: 1fr; gap: var(--space-4); }
-  .split.flip .split-text { order: 0; }
-}
+.row-text { display: grid; gap: var(--space-5); min-width: 0; max-width: 620px; }
+.lead { font: 300 clamp(17px, 1.7vw, 21px)/1.6 var(--font-text); max-width: 52ch; }
+.split-text { display: grid; gap: var(--space-4); align-content: start; min-width: 0; }
+@media (max-width: 860px) { .row { grid-template-columns: 1fr; gap: var(--space-4); } }
 
-.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); align-items: start; max-width: 680px; }
-.split:not(.flip) .pair { justify-self: end; width: 100%; }
-.pair figure { display: grid; gap: var(--space-2); min-width: 0; }
 .frame { aspect-ratio: 3 / 4; max-width: 100%; overflow: hidden; background: var(--surface); }
 .frame img { width: 100%; height: 100%; object-fit: cover; }
 .frame.illu img { object-fit: contain; }
@@ -151,6 +144,7 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
 
 /* ---------- home: project tiles (Paloma Wool row) ---------- */
 .tiles-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); padding-bottom: var(--space-4); }
+.tiles-head a { white-space: nowrap; }
 .tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4) var(--space-3); }
 @media (max-width: 860px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .tile a { display: grid; gap: var(--space-2); }
@@ -280,42 +274,22 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
     </div>
   </section>
 
-  <section class="split" id="worldview" aria-labelledby="t-worldview">
-    <div class="split-text">
-      <h2 class="heading-1" id="t-worldview">Worldview</h2>
-      <p class="body">Rooted in the belief that exploring nature allows us to rediscover the hidden depths of our humanity, ECHÉ EGEH positions clothing as a medium for reconnection, offering more than garments, offering perspective.</p>
-    </div>
-    <div class="pair">
-      <figure>
-        <div class="frame"><img src="img/nature-hay.jpg" alt="Model in a felted cream jacket and black skirt in front of a hay bale"></div>
-        <figcaption class="caption">On the Nature of Us</figcaption>
-      </figure>
-      <figure>
-        <div class="frame illu"><img src="img/ill-nature-looks.jpg" alt="Fashion illustration of the jacket looks, front and back"></div>
-        <figcaption class="caption">Illustration</figcaption>
-      </figure>
+  <section class="row" id="worldview" aria-labelledby="t-worldview">
+    <h2 class="heading-1" id="t-worldview">Worldview</h2>
+    <div class="row-text">
+      <p class="lead">Rooted in the belief that exploring nature allows us to rediscover the hidden depths of our humanity, ECHÉ EGEH positions clothing as a medium for reconnection, offering more than garments, offering perspective.</p>
     </div>
   </section>
 
-  <section class="split flip" id="values" aria-labelledby="t-values">
-    <div class="split-text">
-      <h2 class="heading-1" id="t-values">Values</h2>
+  <section class="row" id="values" aria-labelledby="t-values">
+    <h2 class="heading-1" id="t-values">Values</h2>
+    <div class="row-text">
       <ol class="values">
         <li><span class="n">(1)</span><span class="v">Essence over excess</span></li>
         <li><span class="n">(2)</span><span class="v">Raw truth in materials</span></li>
         <li><span class="n">(3)</span><span class="v">Intimacy &amp; ritual</span></li>
         <li><span class="n">(4)</span><span class="v">Timeless uniqueness</span></li>
       </ol>
-    </div>
-    <div class="pair">
-      <figure>
-        <div class="frame"><img src="img/felted-dress-desert.jpg" alt="Model in the fully felted bubble-hem dress against a limestone cliff"></div>
-        <figcaption class="caption">Felted dress</figcaption>
-      </figure>
-      <figure>
-        <div class="frame illu"><img src="img/ill-felted-dress.jpg" alt="Illustration of the felted dress, front and back"></div>
-        <figcaption class="caption">Front and back</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -325,31 +299,21 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
       <a class="label link" href="#projects">View all →</a>
     </div>
     <ol class="tiles">
-      <li class="tile"><a href="#nature-of-us"><div class="frame"><img src="img/nature-barn.jpg" alt=""></div><span class="t"><b>01.</b>On the Nature of Us</span></a></li>
+      <li class="tile"><a href="#nature-of-us"><div class="frame"><img src="img/nature-two-models.jpg" alt=""></div><span class="t"><b>01.</b>On the Nature of Us</span></a></li>
       <li class="tile"><a href="#organic-form"><div class="frame"><img src="img/cover-felted-silhouette.jpg" alt=""></div><span class="t"><b>02.</b>Organic Form</span></a></li>
       <li class="tile"><a href="#nomadify"><div class="frame"><img src="img/nomadify-satin-bag.jpg" alt=""></div><span class="t"><b>03.</b>Nomadify</span></a></li>
       <li class="tile"><a href="#structured-duality"><div class="frame"><img src="img/duality-look-01.jpg" alt=""></div><span class="t"><b>04.</b>Structured Duality</span></a></li>
     </ol>
   </section>
 
-  <section class="split" id="about" aria-labelledby="t-about">
-    <div class="split-text">
-      <h2 class="heading-1" id="t-about">About</h2>
-      <p class="body">ECHÉ EGEH is my name and the name of this project. It is about clothing, and the quiet rituals and emotions that unfold around it: a space where dressing becomes a return to essence.</p>
+  <section class="row" id="about" aria-labelledby="t-about">
+    <h2 class="heading-1" id="t-about">About</h2>
+    <div class="row-text">
+      <p class="lead">ECHÉ EGEH is my name and the name of this project. It is about clothing, and the quiet rituals and emotions that unfold around it: a space where dressing becomes a return to essence.</p>
       <div class="sign">
         <span class="label">Ece Ege</span>
         <span class="caption">Founder &amp; Creative Director · Based in Milan</span>
       </div>
-    </div>
-    <div class="pair">
-      <figure>
-        <div class="frame"><img src="img/duality-portrait.jpg" alt="Close portrait of a model in a white collar with a metal clasp"></div>
-        <figcaption class="caption">Structured Duality</figcaption>
-      </figure>
-      <figure>
-        <div class="frame"><img src="img/nature-felted-sleeve.jpg" alt="Close-up of a wet-felted cream and moss-green sleeve on a beige jacket, against hay"></div>
-        <figcaption class="caption">Felted sleeve</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -406,7 +370,7 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
   <ol class="index-grid">
     <li class="entry">
       <a href="#nature-of-us">
-        <div class="frame"><img src="img/nature-moss-felt.jpg" alt="" loading="lazy"></div>
+        <div class="frame"><img src="img/nature-two-models.jpg" alt="" loading="lazy"></div>
         <h2><b>01.</b>On the Nature of Us</h2>
         <span class="caption">Collection — 2025</span>
       </a>
@@ -466,7 +430,7 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
       </div>
     </div>
     <div class="post-images">
-      <figure><div class="frame"><img src="img/nature-moss-felt.jpg" alt="Wet-felted moss-green top worn in a field" loading="lazy"></div><figcaption class="caption">(1) Moss felt</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-two-models.jpg" alt="Two models outside a farmhouse, one in the moss-green felted piece, one in a felted top with brown organic patterns" loading="lazy"></div><figcaption class="caption">(1) Moss felt and patterned felt</figcaption></figure>
       <figure><div class="frame"><img src="img/nature-hay.jpg" alt="Felted cream jacket with a sheer black skirt in front of hay" loading="lazy"></div><figcaption class="caption">(2) Felted sleeves, hay</figcaption></figure>
       <figure><div class="frame"><img src="img/nature-barn.jpg" alt="Long felted dress with brown organic patterns" loading="lazy"></div><figcaption class="caption">(3) Barn</figcaption></figure>
       <figure><div class="frame illu"><img src="img/ill-nature-looks.jpg" alt="Fashion illustration of two looks with pleated, nature-printed panels" loading="lazy"></div><figcaption class="caption">(4) Illustration, front and back</figcaption></figure>
