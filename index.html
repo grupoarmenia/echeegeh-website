@@ -35,12 +35,12 @@
   --space-1: 4px; --space-2: 8px; --space-3: 16px; --space-4: 24px;
   --space-5: 40px; --space-6: 64px; --space-7: 104px;
   --gutter: var(--space-6);
-  --section: 144px;
+  --section: 101px;
   --hairline: 1px;
   --ease: cubic-bezier(.2,.6,.2,1);
   color-scheme: light;
 }
-@media (max-width: 860px) { :root { --gutter: var(--space-5); --section: 96px; } }
+@media (max-width: 860px) { :root { --gutter: var(--space-5); --section: 67px; } }
 
 * { box-sizing: border-box; }
 :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
@@ -122,7 +122,7 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
 }
 
 /* ---------- home: centered chapters, about half a screen of white between them ---------- */
-:root { --breath: max(25vh, 112px); }
+:root { --breath: max(17.5vh, 78px); }
 .row { display: grid; justify-items: center; text-align: center; gap: var(--space-5); padding-block: var(--breath); }
 .row-text { display: grid; justify-items: center; gap: var(--space-5); min-width: 0; width: 100%; max-width: 620px; }
 .lead { font: 300 clamp(17px, 1.7vw, 21px)/1.7 var(--font-text); max-width: 52ch; }
