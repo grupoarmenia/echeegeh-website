@@ -87,6 +87,17 @@ figure { margin: 0; }
 .site-head nav a { color: var(--text); padding-block: 2px; border-bottom: var(--hairline) solid transparent; transition: color .4s var(--ease), border-color .4s var(--ease); }
 .site-head nav a:hover { color: var(--text-muted); }
 .site-head nav a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+.site-head nav { margin-left: auto; }
+.lang { display: flex; gap: 10px; padding-left: var(--space-3); border-left: var(--hairline) solid var(--line); }
+.lang button { background: none; border: 0; border-bottom: var(--hairline) solid transparent; border-radius: 0; padding: 2px 0; cursor: pointer; font: inherit; letter-spacing: inherit; color: var(--text-muted); transition: color .4s var(--ease), border-color .4s var(--ease); }
+.lang button:hover { color: var(--text); }
+.lang button[aria-pressed="true"] { color: var(--text); border-bottom-color: var(--text); }
+@media (max-width: 560px) {
+  .site-head { display: grid; grid-template-columns: auto auto; justify-content: space-between; row-gap: 12px; }
+  .site-head .mark { grid-column: 1; grid-row: 1; align-self: center; }
+  .lang { grid-column: 2; grid-row: 1; justify-self: end; border-left: 0; padding-left: 0; }
+  .site-head nav { grid-column: 1 / -1; grid-row: 2; margin-left: 0; justify-content: flex-start; }
+}
 @media (max-width: 560px) {
   .site-head nav .long { display: none; }
   .site-head nav { flex-wrap: nowrap; gap: 12px; letter-spacing: .12em; }
@@ -264,10 +275,15 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
 <header class="site-head">
   <a class="mark" href="#home" aria-label="ECHÉ EGEH home"><img src="img/wordmark.svg" alt="ECHÉ EGEH"></a>
   <nav class="label" aria-label="Main">
-    <a href="#home" data-nav="home">Home</a>
-    <a href="#projects" data-nav="projects"><span class="long">Projects &amp; Collaborations</span><span class="short">Projects</span></a>
-    <a href="#contact" data-nav="contact">Contact</a>
+    <a href="#home" data-nav="home" data-i18n="nav.home">Home</a>
+    <a href="#projects" data-nav="projects"><span class="long" data-i18n="projects">Projects &amp; Collaborations</span><span class="short" data-i18n="nav.projectsShort">Projects</span></a>
+    <a href="#contact" data-nav="contact" data-i18n="contact">Contact</a>
   </nav>
+  <div class="lang label" role="group" aria-label="Language" id="lang">
+    <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="it" lang="it" aria-pressed="false">IT</button>
+    <button type="button" data-lang="es" lang="es" aria-pressed="false">ES</button>
+  </div>
 </header>
 
 <!-- ============ HOME ============ -->
@@ -278,35 +294,35 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
       <img src="img/nature-moss-felt.jpg" width="990" height="1400" alt="Model in the wet-felted moss-green piece from On the Nature of Us, sitting in a field">
     </figure>
     <div class="hero-text">
-      <h1 class="label">Clothing that connects you back to essence</h1>
-      <p class="caps">ECHÉ EGEH is a concept built around the idea of reconnecting with essence. The vision is to create clothing that goes beyond function or trend, serving as a reminder of authenticity and inner grounding.</p>
-      <p class="caption">Ece Ege · Milan</p>
+      <h1 class="label" data-i18n="hero.title">Clothing that connects you back to essence</h1>
+      <p class="caps" data-i18n="hero.text">ECHÉ EGEH is a concept built around the idea of reconnecting with essence. The vision is to create clothing that goes beyond function or trend, serving as a reminder of authenticity and inner grounding.</p>
+      <p class="caption" data-i18n="hero.sign">Ece Ege · Milan</p>
     </div>
   </section>
 
   <section class="row" id="worldview" aria-labelledby="t-worldview">
-    <h2 class="heading-1" id="t-worldview">Worldview</h2>
+    <h2 class="heading-1" id="t-worldview" data-i18n="worldview.title">Worldview</h2>
     <div class="row-text">
-      <p class="lead">Rooted in the belief that exploring nature allows us to rediscover the hidden depths of our humanity, ECHÉ EGEH positions clothing as a medium for reconnection, offering more than garments, offering perspective.</p>
+      <p class="lead" data-i18n="worldview.text">Rooted in the belief that exploring nature allows us to rediscover the hidden depths of our humanity, ECHÉ EGEH positions clothing as a medium for reconnection, offering more than garments, offering perspective.</p>
     </div>
   </section>
 
   <section class="row" id="values" aria-labelledby="t-values">
-    <h2 class="heading-1" id="t-values">Values</h2>
+    <h2 class="heading-1" id="t-values" data-i18n="values.title">Values</h2>
     <div class="row-text">
       <ol class="values">
-        <li><span class="n">(1)</span><span class="v">Essence over excess</span></li>
-        <li><span class="n">(2)</span><span class="v">Raw truth in materials</span></li>
-        <li><span class="n">(3)</span><span class="v">Intimacy &amp; ritual</span></li>
-        <li><span class="n">(4)</span><span class="v">Timeless uniqueness</span></li>
+        <li><span class="n">(1)</span><span class="v" data-i18n="values.1">Essence over excess</span></li>
+        <li><span class="n">(2)</span><span class="v" data-i18n="values.2">Raw truth in materials</span></li>
+        <li><span class="n">(3)</span><span class="v" data-i18n="values.3">Intimacy &amp; ritual</span></li>
+        <li><span class="n">(4)</span><span class="v" data-i18n="values.4">Timeless uniqueness</span></li>
       </ol>
     </div>
   </section>
 
   <section class="projects-row" aria-labelledby="t-projects">
     <div class="tiles-head">
-      <h2 class="label" id="t-projects">Projects &amp; Collaborations</h2>
-      <a class="label link" href="#projects">View all →</a>
+      <h2 class="label" id="t-projects" data-i18n="projects">Projects &amp; Collaborations</h2>
+      <a class="label link" href="#projects" data-i18n="projects.viewAll">View all →</a>
     </div>
     <ol class="tiles">
       <li class="tile"><a href="#nature-of-us"><div class="frame"><img src="img/nature-two-models.jpg" alt=""></div><span class="t"><b>01.</b>On the Nature of Us</span></a></li>
@@ -317,23 +333,23 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
   </section>
 
   <section class="row" id="about" aria-labelledby="t-about">
-    <h2 class="heading-1" id="t-about">About</h2>
+    <h2 class="heading-1" id="t-about" data-i18n="about.title">About</h2>
     <div class="row-text">
-      <p class="lead">ECHÉ EGEH is my name and the name of this project. It is about clothing, and the quiet rituals and emotions that unfold around it: a space where dressing becomes a return to essence.</p>
+      <p class="lead" data-i18n="about.text">ECHÉ EGEH is my name and the name of this project. It is about clothing, and the quiet rituals and emotions that unfold around it: a space where dressing becomes a return to essence.</p>
       <div class="sign">
         <span class="label">Ece Ege</span>
-        <span class="caption">Founder &amp; Creative Director · Based in Milan</span>
+        <span class="caption" data-i18n="about.role">Founder &amp; Creative Director · Based in Milan</span>
       </div>
     </div>
   </section>
 
   <section class="contact" id="contact" aria-labelledby="t-contact">
-    <h2 class="heading-1" id="t-contact">Contact</h2>
+    <h2 class="heading-1" id="t-contact" data-i18n="contact">Contact</h2>
     <ul class="contact-list">
       <li>
-        <span class="k label">Email</span>
-        <a class="val" id="email" href="mailto:ecege3e@gmail.com">ecege3e@gmail.com</a>
-        <button class="copy" type="button" id="copy-email" data-copy="ecege3e@gmail.com">Copy</button>
+        <span class="k label" data-i18n="email">Email</span>
+        <a class="val" id="email" href="mailto:echeegeh@outlook.com">echeegeh@outlook.com</a>
+        <button class="copy" type="button" id="copy-email" data-copy="echeegeh@outlook.com" data-i18n="copy">Copy</button>
       </li>
       <li>
         <span class="k label">Instagram</span>
@@ -345,25 +361,25 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
 
   <section class="contact" aria-labelledby="t-write">
     <div class="split-text">
-      <h2 class="label" id="t-write">Write to us</h2>
-      <p class="caption">For collaborations, commissions and press. Leave your email so Ece can reply.</p>
+      <h2 class="label" id="t-write" data-i18n="write.title">Write to us</h2>
+      <p class="caption" data-i18n="write.text">For collaborations, commissions and press. Leave your email so Ece can reply.</p>
     </div>
     <form class="form" id="contact-form" novalidate>
       <div class="field">
-        <label class="label" for="contact-name">Name</label>
+        <label class="label" for="contact-name" data-i18n="form.name">Name</label>
         <input id="contact-name" name="name" type="text" autocomplete="name" required maxlength="120">
       </div>
       <div class="field">
-        <label class="label" for="contact-email">Email</label>
+        <label class="label" for="contact-email" data-i18n="email">Email</label>
         <input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="200">
       </div>
       <div class="field">
-        <label class="label" for="contact-message">Message</label>
+        <label class="label" for="contact-message" data-i18n="form.message">Message</label>
         <textarea id="contact-message" name="message" rows="5" required maxlength="4000"></textarea>
       </div>
       <div class="form-foot">
         <p class="caption" id="form-status" role="status" aria-live="polite"></p>
-        <button class="send label" type="submit" id="contact-send">Send</button>
+        <button class="send label" type="submit" id="contact-send" data-i18n="form.send">Send</button>
       </div>
     </form>
   </section>
@@ -373,8 +389,8 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
 <!-- ============ PROJECTS INDEX ============ -->
 <main class="view" data-view="projects" id="view-projects" hidden>
   <header class="index-head">
-    <h1 class="heading-1">Projects &amp; Collaborations</h1>
-    <p class="caption">Collections and objects from the 2025 Fashion Design portfolio. Each entry opens into its story, materials and images.</p>
+    <h1 class="heading-1" data-i18n="projects">Projects &amp; Collaborations</h1>
+    <p class="caption" data-i18n="index.text">Collections and objects from the 2025 Fashion Design portfolio. Each entry opens into its story, materials and images.</p>
   </header>
 
   <ol class="index-grid">
@@ -382,231 +398,259 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
       <a href="#nature-of-us">
         <div class="frame"><img src="img/nature-two-models.jpg" alt="" loading="lazy"></div>
         <h2><b>01.</b>On the Nature of Us</h2>
-        <span class="caption">Collection — 2025</span>
+        <span class="caption" data-i18n="type.collection">Collection — 2025</span>
       </a>
     </li>
     <li class="entry">
       <a href="#organic-form">
         <div class="frame"><img src="img/felted-dress-desert.jpg" alt="" loading="lazy"></div>
         <h2><b>02.</b>Organic Form</h2>
-        <span class="caption">Collection — 2025</span>
+        <span class="caption" data-i18n="type.collection">Collection — 2025</span>
       </a>
     </li>
     <li class="entry">
       <a href="#nomadify">
         <div class="frame"><img src="img/nomadify-satin-bag.jpg" alt="" loading="lazy"></div>
         <h2><b>03.</b>Nomadify</h2>
-        <span class="caption">Accessories — 2025</span>
+        <span class="caption" data-i18n="type.accessories">Accessories — 2025</span>
       </a>
     </li>
     <li class="entry">
       <a href="#structured-duality">
         <div class="frame"><img src="img/duality-look-01.jpg" alt="" loading="lazy"></div>
         <h2><b>04.</b>Structured Duality: Femininity in Control</h2>
-        <span class="caption">Collection — 2025</span>
+        <span class="caption" data-i18n="type.collection">Collection — 2025</span>
       </a>
     </li>
   </ol>
 
   <div class="later">
-    <span class="label">Collaborations</span>
-    <span class="caption">New projects and collaborations will be added here.</span>
+    <span class="label" data-i18n="later.label">Collaborations</span>
+    <span class="caption" data-i18n="later.text">New projects and collaborations will be added here.</span>
   </div>
 </main>
 
 <!-- ============ POST 01 ============ -->
 <article class="view" data-view="nature-of-us" hidden>
-  <div class="post-top"><a class="label" href="#projects">← All projects</a><span class="label muted">01. / 04.</span></div>
+  <div class="post-top"><a class="label" href="#projects" data-i18n="post.back">← All projects</a><span class="label muted">01. / 04.</span></div>
   <div class="post-body">
     <div class="post-text">
       <header class="post-open">
         <span class="numeral">01.</span>
         <h1 class="heading-1">On the Nature of Us</h1>
-        <span class="caption">Collection · Fashion Design BA, 2025</span>
+        <span class="caption" data-i18n="post.collectionBA">Collection · Fashion Design BA, 2025</span>
       </header>
-      <p>The collection expresses the connection between nature and humanity, not through the use of natural materials but through visual and conceptual elements that evoke nature’s presence in form, shape and structure.</p>
-      <p>By employing design techniques and aesthetics drawn from organic patterns, geometric forms and textural contrasts, the collection creates a dialogue between nature and humanity, showing how the external world serves as a mirror to our inner landscapes.</p>
-      <p>It is a reflection on how understanding nature’s intricate beauty and complexity allows us to reconnect with our deeper selves, and encourages a more conscious, introspective view of our relationship with the world around us.</p>
+      <p data-i18n="n.p1">The collection expresses the connection between nature and humanity, not through the use of natural materials but through visual and conceptual elements that evoke nature’s presence in form, shape and structure.</p>
+      <p data-i18n="n.p2">By employing design techniques and aesthetics drawn from organic patterns, geometric forms and textural contrasts, the collection creates a dialogue between nature and humanity, showing how the external world serves as a mirror to our inner landscapes.</p>
+      <p data-i18n="n.p3">It is a reflection on how understanding nature’s intricate beauty and complexity allows us to reconnect with our deeper selves, and encourages a more conscious, introspective view of our relationship with the world around us.</p>
       <div class="facts">
-        <span class="label">Process</span>
+        <span class="label" data-i18n="post.process">Process</span>
         <ul class="process">
-          <li><button class="thumb" type="button" data-full="img/process/nature-moodboard.jpg" data-caption="Moodboard and fabric swatches" aria-label="Open larger: Moodboard and fabric swatches"><img src="img/process/nature-moodboard.jpg" alt="Moodboard and fabric swatches" loading="lazy"></button></li>
-          <li><button class="thumb" type="button" data-full="img/process/nature-sketchbook-1.jpg" data-caption="Sketchbook, first looks" aria-label="Open larger: Sketchbook, first looks"><img src="img/process/nature-sketchbook-1.jpg" alt="Sketchbook, first looks" loading="lazy"></button></li>
-          <li><button class="thumb" type="button" data-full="img/process/nature-sketchbook-2.jpg" data-caption="Sketchbook, felt and textures" aria-label="Open larger: Sketchbook, felt and textures"><img src="img/process/nature-sketchbook-2.jpg" alt="Sketchbook, felt and textures" loading="lazy"></button></li>
-          <li><button class="thumb" type="button" data-full="img/process/nature-sketchbook-3.jpg" data-caption="Sketchbook, moss and bark" aria-label="Open larger: Sketchbook, moss and bark"><img src="img/process/nature-sketchbook-3.jpg" alt="Sketchbook, moss and bark" loading="lazy"></button></li>
-          <li><button class="thumb" type="button" data-full="img/process/nature-lineup.jpg" data-caption="Collection overview" aria-label="Open larger: Collection overview"><img src="img/process/nature-lineup.jpg" alt="Collection overview" loading="lazy"></button></li>
-          <li><button class="thumb" type="button" data-full="img/ill-nature-looks.jpg" data-caption="Illustration, front and back" aria-label="Open larger: Illustration, front and back"><img src="img/ill-nature-looks.jpg" alt="Illustration, front and back" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nature-moodboard.jpg" data-caption="Moodboard and fabric swatches" data-i18n-cap="c.nMood" aria-label="Open larger: Moodboard and fabric swatches"><img src="img/process/nature-moodboard.jpg" alt="Moodboard and fabric swatches" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nature-sketchbook-1.jpg" data-caption="Sketchbook, first looks" data-i18n-cap="c.nSketch1" aria-label="Open larger: Sketchbook, first looks"><img src="img/process/nature-sketchbook-1.jpg" alt="Sketchbook, first looks" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nature-sketchbook-2.jpg" data-caption="Sketchbook, felt and textures" data-i18n-cap="c.nSketch2" aria-label="Open larger: Sketchbook, felt and textures"><img src="img/process/nature-sketchbook-2.jpg" alt="Sketchbook, felt and textures" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nature-sketchbook-3.jpg" data-caption="Sketchbook, moss and bark" data-i18n-cap="c.nSketch3" aria-label="Open larger: Sketchbook, moss and bark"><img src="img/process/nature-sketchbook-3.jpg" alt="Sketchbook, moss and bark" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nature-lineup.jpg" data-caption="Collection overview" data-i18n-cap="c.overview" aria-label="Open larger: Collection overview"><img src="img/process/nature-lineup.jpg" alt="Collection overview" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/ill-nature-looks.jpg" data-caption="Illustration, front and back" data-i18n-cap="c.illu" aria-label="Open larger: Illustration, front and back"><img src="img/ill-nature-looks.jpg" alt="Illustration, front and back" loading="lazy"></button></li>
         </ul>
       </div>
     </div>
     <div class="post-images">
-      <figure><div class="frame"><img src="img/nature-two-models.jpg" alt="Two models outside a farmhouse, one in the moss-green felted piece, one in a felted top with brown organic patterns" loading="lazy"></div><figcaption class="caption">(1) Moss felt and patterned felt</figcaption></figure>
-      <figure><div class="frame"><img src="img/nature-hay.jpg" alt="Felted cream jacket with a sheer black skirt in front of hay" loading="lazy"></div><figcaption class="caption">(2) Felted sleeves, hay</figcaption></figure>
-      <figure class="wide"><div class="frame"><img src="img/nature-cows-crouch.jpg" alt="Model crouching in hay in front of cows, in the patterned felted dress" loading="lazy"></div><figcaption class="caption">(3) Patterned felt, in the barn</figcaption></figure>
-      <figure><div class="frame"><img src="img/nature-felted-sleeve.jpg" alt="Close-up of a wet-felted cream and moss-green sleeve" loading="lazy"></div><figcaption class="caption">(4) Felted sleeve</figcaption></figure>
-      <figure><div class="frame"><img src="img/nature-moss-felt.jpg" alt="Wet-felted moss-green top worn in a field" loading="lazy"></div><figcaption class="caption">(5) Moss felt</figcaption></figure>
-      <figure><div class="frame"><img src="img/nature-barn.jpg" alt="Long felted dress with brown organic patterns, standing in a barn" loading="lazy"></div><figcaption class="caption">(6) Long felted dress</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-two-models.jpg" alt="Two models outside a farmhouse, one in the moss-green felted piece, one in a felted top with brown organic patterns" loading="lazy"></div><figcaption class="caption" data-i18n="n.f1">(1) Moss felt and patterned felt</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-hay.jpg" alt="Felted cream jacket with a sheer black skirt in front of hay" loading="lazy"></div><figcaption class="caption" data-i18n="n.f2">(2) Felted sleeves, hay</figcaption></figure>
+      <figure class="wide"><div class="frame"><img src="img/nature-cows-crouch.jpg" alt="Model crouching in hay in front of cows, in the patterned felted dress" loading="lazy"></div><figcaption class="caption" data-i18n="n.f3">(3) Patterned felt, in the barn</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-felted-sleeve.jpg" alt="Close-up of a wet-felted cream and moss-green sleeve" loading="lazy"></div><figcaption class="caption" data-i18n="n.f4">(4) Felted sleeve</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-moss-felt.jpg" alt="Wet-felted moss-green top worn in a field" loading="lazy"></div><figcaption class="caption" data-i18n="n.f5">(5) Moss felt</figcaption></figure>
+      <figure><div class="frame"><img src="img/nature-barn.jpg" alt="Long felted dress with brown organic patterns, standing in a barn" loading="lazy"></div><figcaption class="caption" data-i18n="n.f6">(6) Long felted dress</figcaption></figure>
     </div>
   </div>
   <nav class="post-next" aria-label="More projects">
-    <a href="#projects"><span class="label muted">Back</span><span class="heading-2">All projects</span></a>
-    <a href="#organic-form"><span class="label muted">Next 02.</span><span class="heading-2">Organic Form</span></a>
+    <a href="#projects"><span class="label muted" data-i18n="post.backLabel">Back</span><span class="heading-2" data-i18n="post.allProjects">All projects</span></a>
+    <a href="#organic-form"><span class="label muted" data-i18n="post.next02">Next 02.</span><span class="heading-2">Organic Form</span></a>
   </nav>
 </article>
 
 <!-- ============ POST 02 ============ -->
 <article class="view" data-view="organic-form" hidden>
-  <div class="post-top"><a class="label" href="#projects">← All projects</a><span class="label muted">02. / 04.</span></div>
+  <div class="post-top"><a class="label" href="#projects" data-i18n="post.back">← All projects</a><span class="label muted">02. / 04.</span></div>
   <div class="post-body">
     <div class="post-text">
       <header class="post-open">
         <span class="numeral">02.</span>
         <h1 class="heading-1">Organic Form</h1>
-        <span class="caption">Collection · Fashion Design BA, 2025</span>
+        <span class="caption" data-i18n="post.collectionBA">Collection · Fashion Design BA, 2025</span>
       </header>
-      <p>Organic Form begins with a moodboard of raw fibre, clay-brown wool, poppy heads and open landscape. Nine words hold the collection together, and its volumes grow from them: balloon trousers, cocoon sleeves and bubble hems.</p>
+      <p data-i18n="o.p1">Organic Form begins with a moodboard of raw fibre, clay-brown wool, poppy heads and open landscape. Nine words hold the collection together, and its volumes grow from them: balloon trousers, cocoon sleeves and bubble hems.</p>
       <ul class="numlist">
-        <li>(1) Natural</li><li>(2) Organic</li><li>(3) Earthy</li><li>(4) Raw</li><li>(5) Botanical</li><li>(6) Fibrous</li><li>(7) Warm</li><li>(8) Calm</li><li>(9) Authentic</li>
+        <li data-i18n="o.w1">(1) Natural</li><li data-i18n="o.w2">(2) Organic</li><li data-i18n="o.w3">(3) Earthy</li><li data-i18n="o.w4">(4) Raw</li><li data-i18n="o.w5">(5) Botanical</li><li data-i18n="o.w6">(6) Fibrous</li><li data-i18n="o.w7">(7) Warm</li><li data-i18n="o.w8">(8) Calm</li><li data-i18n="o.w9">(9) Authentic</li>
       </ul>
       <div class="facts">
-        <span class="label">Selected look: fully felted dress</span>
+        <span class="label" data-i18n="o.selected">Selected look: fully felted dress</span>
         <dl>
-          <dt>Shape</dt><dd>A-line</dd>
-          <dt>Armhole</dt><dd>Wide opening</dd>
-          <dt>Hem</dt><dd>Bubble hem</dd>
+          <dt data-i18n="o.shape">Shape</dt><dd data-i18n="o.aline">A-line</dd>
+          <dt data-i18n="o.armhole">Armhole</dt><dd data-i18n="o.wide">Wide opening</dd>
+          <dt data-i18n="o.hem">Hem</dt><dd data-i18n="o.bubble">Bubble hem</dd>
         </dl>
       </div>
       <div class="facts">
-        <span class="label">Process</span>
+        <span class="label" data-i18n="post.process">Process</span>
         <ul class="process">
-          <li><button class="thumb" type="button" data-full="img/process/organic-moodboard.jpg" data-caption="Moodboard" aria-label="Open larger: Moodboard"><img src="img/process/organic-moodboard.jpg" alt="Moodboard" loading="lazy"></button></li>
-          <li><button class="thumb" type="button" data-full="img/process/organic-words.jpg" data-caption="Nine words, from natural to authentic" aria-label="Open larger: Nine words, from natural to authentic"><img src="img/process/organic-words.jpg" alt="Nine words, from natural to authentic" loading="lazy"></button></li>
-          <li><button class="thumb" type="button" data-full="img/process/organic-lineup.jpg" data-caption="Collection overview" aria-label="Open larger: Collection overview"><img src="img/process/organic-lineup.jpg" alt="Collection overview" loading="lazy"></button></li>
-          <li><button class="thumb" type="button" data-full="img/process/organic-felted-dress-spec.jpg" data-caption="Selected look: fully felted dress, flats" aria-label="Open larger: Selected look: fully felted dress, flats"><img src="img/process/organic-felted-dress-spec.jpg" alt="Selected look: fully felted dress, flats" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/organic-moodboard.jpg" data-caption="Moodboard" data-i18n-cap="c.oMood" aria-label="Open larger: Moodboard"><img src="img/process/organic-moodboard.jpg" alt="Moodboard" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/organic-words.jpg" data-caption="Nine words, from natural to authentic" data-i18n-cap="c.oWords" aria-label="Open larger: Nine words, from natural to authentic"><img src="img/process/organic-words.jpg" alt="Nine words, from natural to authentic" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/organic-lineup.jpg" data-caption="Collection overview" data-i18n-cap="c.overview" aria-label="Open larger: Collection overview"><img src="img/process/organic-lineup.jpg" alt="Collection overview" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/organic-felted-dress-spec.jpg" data-caption="Selected look: fully felted dress, flats" data-i18n-cap="c.oSpec" aria-label="Open larger: Selected look: fully felted dress, flats"><img src="img/process/organic-felted-dress-spec.jpg" alt="Selected look: fully felted dress, flats" loading="lazy"></button></li>
         </ul>
       </div>
     </div>
     <div class="post-images">
-      <figure><div class="frame"><img src="img/felted-dress-desert.jpg" alt="Fully felted bubble-hem dress against a limestone cliff" loading="lazy"></div><figcaption class="caption">(1) The fully felted dress</figcaption></figure>
-      <figure class="illu"><div class="frame illu"><img src="img/ill-felted-dress.jpg" alt="Illustration of the felted dress, front and back" loading="lazy"></div><figcaption class="caption">(2) Illustration, front and back</figcaption></figure>
-      <figure><div class="frame"><img src="img/cover-felted-silhouette.jpg" alt="Black and white portrait of the felted dress in profile" loading="lazy"></div><figcaption class="caption">(3) Portfolio cover</figcaption></figure>
+      <figure><div class="frame"><img src="img/felted-dress-desert.jpg" alt="Fully felted bubble-hem dress against a limestone cliff" loading="lazy"></div><figcaption class="caption" data-i18n="o.f1">(1) The fully felted dress</figcaption></figure>
+      <figure class="illu"><div class="frame illu"><img src="img/ill-felted-dress.jpg" alt="Illustration of the felted dress, front and back" loading="lazy"></div><figcaption class="caption" data-i18n="o.f2">(2) Illustration, front and back</figcaption></figure>
+      <figure><div class="frame"><img src="img/cover-felted-silhouette.jpg" alt="Black and white portrait of the felted dress in profile" loading="lazy"></div><figcaption class="caption" data-i18n="o.f3">(3) Portfolio cover</figcaption></figure>
     </div>
   </div>
   <nav class="post-next" aria-label="More projects">
-    <a href="#nature-of-us"><span class="label muted">Previous 01.</span><span class="heading-2">On the Nature of Us</span></a>
-    <a href="#nomadify"><span class="label muted">Next 03.</span><span class="heading-2">Nomadify</span></a>
+    <a href="#nature-of-us"><span class="label muted" data-i18n="post.prev01">Previous 01.</span><span class="heading-2">On the Nature of Us</span></a>
+    <a href="#nomadify"><span class="label muted" data-i18n="post.next03">Next 03.</span><span class="heading-2">Nomadify</span></a>
   </nav>
 </article>
 
 <!-- ============ POST 03 ============ -->
 <article class="view" data-view="nomadify" hidden>
-  <div class="post-top"><a class="label" href="#projects">← All projects</a><span class="label muted">03. / 04.</span></div>
+  <div class="post-top"><a class="label" href="#projects" data-i18n="post.back">← All projects</a><span class="label muted">03. / 04.</span></div>
   <div class="post-body">
     <div class="post-text">
       <header class="post-open">
         <span class="numeral">03.</span>
         <h1 class="heading-1">Nomadify</h1>
-        <span class="caption">Accessories · In dialogue with Dina Haddadin &amp; Rasem Kamal</span>
+        <span class="caption" data-i18n="m.type">Accessories · In dialogue with Dina Haddadin &amp; Rasem Kamal</span>
       </header>
-      <p>This project converges with two muses, Dina Haddadin and Rasem Kamal, creators of a sustainable nomadic pavilion in the Jordan desert, and gives birth to Futuristic Nomad.</p>
-      <p>Their pavilion reinterprets a local Bedouin tent: a corten steel frame covered in goat hair for cooling, with a self-sustained drinking fountain that becomes a cooling surface and a welcoming oasis. The permeable structure blends with its surroundings yet stands out as a sanctuary in the nomads’ land.</p>
-      <p>The collection blends futuristic elements with nomadic aesthetics, embodying adaptability, resilience and eco-consciousness. It is a visual narrative about the interplay between architecture and fashion, and a celebration of cultural fusion and sustainability.</p>
+      <p data-i18n="m.p1">This project converges with two muses, Dina Haddadin and Rasem Kamal, creators of a sustainable nomadic pavilion in the Jordan desert, and gives birth to Futuristic Nomad.</p>
+      <p data-i18n="m.p2">Their pavilion reinterprets a local Bedouin tent: a corten steel frame covered in goat hair for cooling, with a self-sustained drinking fountain that becomes a cooling surface and a welcoming oasis. The permeable structure blends with its surroundings yet stands out as a sanctuary in the nomads’ land.</p>
+      <p data-i18n="m.p3">The collection blends futuristic elements with nomadic aesthetics, embodying adaptability, resilience and eco-consciousness. It is a visual narrative about the interplay between architecture and fashion, and a celebration of cultural fusion and sustainability.</p>
       <div class="facts">
-        <span class="label">Materials</span>
+        <span class="label" data-i18n="m.materials">Materials</span>
         <dl>
-          <dt>(1)</dt><dd>Mushroom leather</dd>
-          <dt>(2)</dt><dd>Duchesse satin</dd>
+          <dt>(1)</dt><dd data-i18n="m.mushroom">Mushroom leather</dd>
+          <dt>(2)</dt><dd data-i18n="m.satin">Duchesse satin</dd>
         </dl>
       </div>
       <div class="facts">
-        <span class="label">Process</span>
+        <span class="label" data-i18n="post.process">Process</span>
         <ul class="process">
-          <li><button class="thumb" type="button" data-full="img/process/nomadify-moodboard.jpg" data-caption="Moodboard: the nomad pavilion" aria-label="Open larger: Moodboard: the nomad pavilion"><img src="img/process/nomadify-moodboard.jpg" alt="Moodboard: the nomad pavilion" loading="lazy"></button></li>
-          <li><button class="thumb" type="button" data-full="img/process/nomadify-sketches.jpg" data-caption="Sketches: folded structure, mushroom leather and duchesse satin" aria-label="Open larger: Sketches: folded structure, mushroom leather and duchesse satin"><img src="img/process/nomadify-sketches.jpg" alt="Sketches: folded structure, mushroom leather and duchesse satin" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nomadify-moodboard.jpg" data-caption="Moodboard: the nomad pavilion" data-i18n-cap="c.mMood" aria-label="Open larger: Moodboard: the nomad pavilion"><img src="img/process/nomadify-moodboard.jpg" alt="Moodboard: the nomad pavilion" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/nomadify-sketches.jpg" data-caption="Sketches: folded structure, mushroom leather and duchesse satin" data-i18n-cap="c.mSketch" aria-label="Open larger: Sketches: folded structure, mushroom leather and duchesse satin"><img src="img/process/nomadify-sketches.jpg" alt="Sketches: folded structure, mushroom leather and duchesse satin" loading="lazy"></button></li>
         </ul>
       </div>
     </div>
     <div class="post-images">
-      <figure><div class="frame"><img src="img/nomadify-satin-bag.jpg" alt="Folded rust duchesse-satin bag with a leather strap, held against the body" loading="lazy"></div><figcaption class="caption">(1) Folded satin bag</figcaption></figure>
-      <figure><div class="frame"><img src="img/nomadify-bw-portrait.jpg" alt="Black and white portrait of a model holding the folded satin bag" loading="lazy"></div><figcaption class="caption">(2) Studio portrait</figcaption></figure>
-      <figure><div class="frame"><img src="img/nomadify-bag-legs.jpg" alt="Folded rust bucket bag carried beside a raw-edged skirt and brown leather shoes" loading="lazy"></div><figcaption class="caption">(3) Bucket bag</figcaption></figure>
+      <figure><div class="frame"><img src="img/nomadify-satin-bag.jpg" alt="Folded rust duchesse-satin bag with a leather strap, held against the body" loading="lazy"></div><figcaption class="caption" data-i18n="m.f1">(1) Folded satin bag</figcaption></figure>
+      <figure><div class="frame"><img src="img/nomadify-bw-portrait.jpg" alt="Black and white portrait of a model holding the folded satin bag" loading="lazy"></div><figcaption class="caption" data-i18n="m.f2">(2) Studio portrait</figcaption></figure>
+      <figure><div class="frame"><img src="img/nomadify-bag-legs.jpg" alt="Folded rust bucket bag carried beside a raw-edged skirt and brown leather shoes" loading="lazy"></div><figcaption class="caption" data-i18n="m.f3">(3) Bucket bag</figcaption></figure>
     </div>
   </div>
   <nav class="post-next" aria-label="More projects">
-    <a href="#organic-form"><span class="label muted">Previous 02.</span><span class="heading-2">Organic Form</span></a>
-    <a href="#structured-duality"><span class="label muted">Next 04.</span><span class="heading-2">Structured Duality</span></a>
+    <a href="#organic-form"><span class="label muted" data-i18n="post.prev02">Previous 02.</span><span class="heading-2">Organic Form</span></a>
+    <a href="#structured-duality"><span class="label muted" data-i18n="post.next04">Next 04.</span><span class="heading-2">Structured Duality</span></a>
   </nav>
 </article>
 
 <!-- ============ POST 04 ============ -->
 <article class="view" data-view="structured-duality" hidden>
-  <div class="post-top"><a class="label" href="#projects">← All projects</a><span class="label muted">04. / 04.</span></div>
+  <div class="post-top"><a class="label" href="#projects" data-i18n="post.back">← All projects</a><span class="label muted">04. / 04.</span></div>
   <div class="post-body">
     <div class="post-text">
       <header class="post-open">
         <span class="numeral">04.</span>
         <h1 class="heading-1">Structured Duality: Femininity in Control</h1>
-        <span class="caption">Collection · Fashion Design BA, 2025</span>
+        <span class="caption" data-i18n="post.collectionBA">Collection · Fashion Design BA, 2025</span>
       </header>
-      <p>This collection embodies the quiet tension between strength and vulnerability. It explores the interplay of contrast: control and softness, exposure and concealment, precision and fluidity. Each look captures a state of balance where opposites coexist, in a visual language that is both assertive and introspective.</p>
-      <p>The atmosphere is charged with a subtle intensity. Emotions are contained, yet present. There is an elegance in restraint, a kind of calm rebellion. The woman at the centre of this narrative owns her complexity; she does not perform it. This is a story of contrast, not conflict, of harmony found in paradox.</p>
+      <p data-i18n="d.p1">This collection embodies the quiet tension between strength and vulnerability. It explores the interplay of contrast: control and softness, exposure and concealment, precision and fluidity. Each look captures a state of balance where opposites coexist, in a visual language that is both assertive and introspective.</p>
+      <p data-i18n="d.p2">The atmosphere is charged with a subtle intensity. Emotions are contained, yet present. There is an elegance in restraint, a kind of calm rebellion. The woman at the centre of this narrative owns her complexity; she does not perform it. This is a story of contrast, not conflict, of harmony found in paradox.</p>
       <div class="facts">
-        <span class="label">Inspiration</span>
+        <span class="label" data-i18n="d.inspiration">Inspiration</span>
         <ul class="refs">
-          <li>Avant-garde femininity: Ann Demeulemeester, Helmut Lang, Yohji Yamamoto.</li>
-          <li>Gothic romanticism: the dark elegance of corsetry and Victorian underlayers.</li>
-          <li>Post-apocalyptic softness: garments that armour and expose at once.</li>
-          <li>90s minimalism meets 2000s subversion: clean lines disrupted by unexpected cuts and layers.</li>
+          <li data-i18n="d.r1">Avant-garde femininity: Ann Demeulemeester, Helmut Lang, Yohji Yamamoto.</li>
+          <li data-i18n="d.r2">Gothic romanticism: the dark elegance of corsetry and Victorian underlayers.</li>
+          <li data-i18n="d.r3">Post-apocalyptic softness: garments that armour and expose at once.</li>
+          <li data-i18n="d.r4">90s minimalism meets 2000s subversion: clean lines disrupted by unexpected cuts and layers.</li>
         </ul>
       </div>
       <div class="facts">
-        <span class="label">Fabrics</span>
+        <span class="label" data-i18n="d.fabrics">Fabrics</span>
         <ul class="numlist">
-          <li>(1) Sea island cotton poplin</li><li>(2) Silk taffeta</li><li>(3) Sheer organza</li><li>(4) Worsted wool</li><li>(5) Cotton coutil</li>
+          <li data-i18n="d.fab1">(1) Sea island cotton poplin</li><li data-i18n="d.fab2">(2) Silk taffeta</li><li data-i18n="d.fab3">(3) Sheer organza</li><li data-i18n="d.fab4">(4) Worsted wool</li><li data-i18n="d.fab5">(5) Cotton coutil</li>
         </ul>
       </div>
       <div class="facts">
-        <span class="label">Process</span>
+        <span class="label" data-i18n="post.process">Process</span>
         <ul class="process">
-          <li><button class="thumb" type="button" data-full="img/process/duality-references.jpg" data-caption="Inspiration references and fabrics" aria-label="Open larger: Inspiration references and fabrics"><img src="img/process/duality-references.jpg" alt="Inspiration references and fabrics" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="img/process/duality-references.jpg" data-caption="Inspiration references and fabrics" data-i18n-cap="c.dRefs" aria-label="Open larger: Inspiration references and fabrics"><img src="img/process/duality-references.jpg" alt="Inspiration references and fabrics" loading="lazy"></button></li>
         </ul>
       </div>
     </div>
     <div class="post-images">
-      <figure><div class="frame"><img src="img/duality-look-01.jpg" alt="Model in an oversized white shirt and black pleated skirt, seated on a stool" loading="lazy"></div><figcaption class="caption">(1) White poplin, black wool</figcaption></figure>
-      <figure><div class="frame"><img src="img/duality-standing.jpg" alt="Model standing in the oversized white poplin shirt and pleated skirt" loading="lazy"></div><figcaption class="caption">(2) Standing</figcaption></figure>
-      <figure><div class="frame"><img src="img/duality-portrait.jpg" alt="Close portrait of the model in a white collar with a metal clasp" loading="lazy"></div><figcaption class="caption">(3) Portrait</figcaption></figure>
-      <figure><div class="frame"><img src="img/duality-corset.jpg" alt="Model in a black jacket with corset lacing and a gathered taffeta skirt over organza" loading="lazy"></div><figcaption class="caption">(4) Corset lacing, taffeta</figcaption></figure>
-      <figure><div class="frame"><img src="img/duality-floor.jpg" alt="Model lying back on the studio floor in a black jacket and sheer organza skirt" loading="lazy"></div><figcaption class="caption">(5) On the floor</figcaption></figure>
-      <figure><div class="frame"><img src="img/duality-legs.jpg" alt="Legs in sheer black socks and pointed shoes under a white organza skirt" loading="lazy"></div><figcaption class="caption">(6) Organza and lace</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-look-01.jpg" alt="Model in an oversized white shirt and black pleated skirt, seated on a stool" loading="lazy"></div><figcaption class="caption" data-i18n="d.f1">(1) White poplin, black wool</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-standing.jpg" alt="Model standing in the oversized white poplin shirt and pleated skirt" loading="lazy"></div><figcaption class="caption" data-i18n="d.f2">(2) Standing</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-portrait.jpg" alt="Close portrait of the model in a white collar with a metal clasp" loading="lazy"></div><figcaption class="caption" data-i18n="d.f3">(3) Portrait</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-corset.jpg" alt="Model in a black jacket with corset lacing and a gathered taffeta skirt over organza" loading="lazy"></div><figcaption class="caption" data-i18n="d.f4">(4) Corset lacing, taffeta</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-floor.jpg" alt="Model lying back on the studio floor in a black jacket and sheer organza skirt" loading="lazy"></div><figcaption class="caption" data-i18n="d.f5">(5) On the floor</figcaption></figure>
+      <figure><div class="frame"><img src="img/duality-legs.jpg" alt="Legs in sheer black socks and pointed shoes under a white organza skirt" loading="lazy"></div><figcaption class="caption" data-i18n="d.f6">(6) Organza and lace</figcaption></figure>
     </div>
   </div>
   <nav class="post-next" aria-label="More projects">
-    <a href="#nomadify"><span class="label muted">Previous 03.</span><span class="heading-2">Nomadify</span></a>
-    <a href="#projects"><span class="label muted">Back</span><span class="heading-2">All projects</span></a>
+    <a href="#nomadify"><span class="label muted" data-i18n="post.prev03">Previous 03.</span><span class="heading-2">Nomadify</span></a>
+    <a href="#projects"><span class="label muted" data-i18n="post.backLabel">Back</span><span class="heading-2" data-i18n="post.allProjects">All projects</span></a>
   </nav>
 </article>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Process image" hidden>
   <div class="lightbox-bar">
     <span class="label muted" id="lb-count"></span>
-    <button class="lb-btn" type="button" id="lb-close">Close ×</button>
+    <button class="lb-btn" type="button" id="lb-close" data-i18n="lb.close">Close ×</button>
   </div>
   <figure><img id="lb-img" src="" alt=""></figure>
   <div class="lightbox-foot">
-    <button class="lb-btn" type="button" id="lb-prev">← Previous</button>
+    <button class="lb-btn" type="button" id="lb-prev" data-i18n="lb.prev">← Previous</button>
     <span class="caption" id="lb-caption"></span>
-    <button class="lb-btn" type="button" id="lb-next">Next →</button>
+    <button class="lb-btn" type="button" id="lb-next" data-i18n="lb.next">Next →</button>
   </div>
 </div>
 
 <footer class="site-foot">
   <img src="img/monogram.svg" alt="EE">
-  <span class="caption">All rights reserved © 2026 by Ece Ege · Milan</span>
+  <span class="caption" data-i18n="footer">All rights reserved © 2026 by Ece Ege · Milan</span>
 </footer>
 
 <script>
 (function () {
+  /* Languages: English is written in the page; Italian and Spanish come from this table. */
+  var I18N = {"it": {"nav.home": "Home", "projects": "Progetti e collaborazioni", "nav.projectsShort": "Progetti", "contact": "Contatti", "hero.title": "Abiti che ti riconnettono all’essenza", "hero.text": "ECHÉ EGEH è un concetto nato dall’idea di ritrovare l’essenza. La visione è creare abiti che vadano oltre la funzione e la tendenza, come un richiamo all’autenticità e al radicamento interiore.", "hero.sign": "Ece Ege · Milano", "worldview.title": "Visione del mondo", "worldview.text": "Nella convinzione che esplorare la natura ci permetta di riscoprire le profondità nascoste della nostra umanità, ECHÉ EGEH concepisce l’abito come un mezzo di riconnessione: offre più che capi, offre una prospettiva.", "values.title": "Valori", "values.1": "L’essenza prima dell’eccesso", "values.2": "La verità grezza dei materiali", "values.3": "Intimità e rituale", "values.4": "Unicità senza tempo", "projects.viewAll": "Vedi tutti →", "about.title": "Chi sono", "about.text": "ECHÉ EGEH è il mio nome e il nome di questo progetto. Parla di abiti, e dei rituali silenziosi e delle emozioni che si dispiegano attorno a essi: uno spazio in cui vestirsi diventa un ritorno all’essenza.", "about.role": "Fondatrice e direttrice creativa · Con sede a Milano", "email": "Email", "copy": "Copia", "write.title": "Scrivici", "write.text": "Per collaborazioni, commissioni e stampa. Lascia la tua email così Ece potrà risponderti.", "form.name": "Nome", "form.message": "Messaggio", "form.send": "Invia", "index.text": "Collezioni e oggetti dal portfolio di Fashion Design 2025. Ogni voce si apre sulla sua storia, sui materiali e sulle immagini.", "type.collection": "Collezione — 2025", "type.accessories": "Accessori — 2025", "later.label": "Collaborazioni", "later.text": "Qui verranno aggiunti nuovi progetti e collaborazioni.", "post.back": "← Tutti i progetti", "post.collectionBA": "Collezione · Laurea in Fashion Design, 2025", "post.process": "Processo", "post.backLabel": "Indietro", "post.allProjects": "Tutti i progetti", "post.next02": "Successivo 02.", "post.next03": "Successivo 03.", "post.next04": "Successivo 04.", "post.prev01": "Precedente 01.", "post.prev02": "Precedente 02.", "post.prev03": "Precedente 03.", "n.p1": "La collezione esprime il legame tra natura e umanità non attraverso l’uso di materiali naturali, ma attraverso elementi visivi e concettuali che evocano la presenza della natura nella forma, nella sagoma e nella struttura.", "n.p2": "Attraverso tecniche ed estetiche progettuali ispirate a motivi organici, forme geometriche e contrasti materici, la collezione crea un dialogo tra natura e umanità, mostrando come il mondo esterno sia uno specchio dei nostri paesaggi interiori.", "n.p3": "È una riflessione su come comprendere la bellezza intricata e la complessità della natura ci permetta di riconnetterci con la parte più profonda di noi stessi, invitando a uno sguardo più consapevole e introspettivo sul nostro rapporto con il mondo che ci circonda.", "n.f1": "(1) Feltro muschio e feltro decorato", "n.f2": "(2) Maniche in feltro, fieno", "n.f3": "(3) Feltro decorato, nella stalla", "n.f4": "(4) Manica in feltro", "n.f5": "(5) Feltro muschio", "n.f6": "(6) Abito lungo in feltro", "o.p1": "Organic Form nasce da un moodboard di fibra grezza, lana color argilla, capsule di papavero e paesaggi aperti. Nove parole tengono insieme la collezione e da esse crescono i suoi volumi: pantaloni a palloncino, maniche a bozzolo e orli a bolla.", "o.w1": "(1) Naturale", "o.w2": "(2) Organico", "o.w3": "(3) Terroso", "o.w4": "(4) Grezzo", "o.w5": "(5) Botanico", "o.w6": "(6) Fibroso", "o.w7": "(7) Caldo", "o.w8": "(8) Calmo", "o.w9": "(9) Autentico", "o.selected": "Look selezionato: abito interamente in feltro", "o.shape": "Forma", "o.aline": "Linea ad A", "o.armhole": "Giromanica", "o.wide": "Apertura ampia", "o.hem": "Orlo", "o.bubble": "Orlo a bolla", "o.f1": "(1) L’abito interamente in feltro", "o.f2": "(2) Illustrazione, fronte e retro", "o.f3": "(3) Copertina del portfolio", "m.type": "Accessori · In dialogo con Dina Haddadin e Rasem Kamal", "m.p1": "Questo progetto si incontra con due muse, Dina Haddadin e Rasem Kamal, autori di un padiglione nomade sostenibile nel deserto giordano, e dà vita a Futuristic Nomad.", "m.p2": "Il loro padiglione reinterpreta una tenda beduina locale: una struttura in acciaio corten rivestita di pelo di capra per rinfrescare, con una fontana autosufficiente che diventa superficie di raffrescamento e oasi accogliente. La struttura permeabile si fonde con l’ambiente circostante, ma si distingue come rifugio nella terra dei nomadi.", "m.p3": "La collezione unisce elementi futuristici ed estetica nomade, incarnando adattabilità, resilienza e coscienza ecologica. È un racconto visivo sul dialogo tra architettura e moda, e una celebrazione della fusione culturale e della sostenibilità.", "m.materials": "Materiali", "m.mushroom": "Pelle di funghi", "m.satin": "Raso duchesse", "m.f1": "(1) Borsa in raso piegato", "m.f2": "(2) Ritratto in studio", "m.f3": "(3) Borsa a secchiello", "d.p1": "Questa collezione incarna la tensione silenziosa tra forza e vulnerabilità. Esplora il gioco dei contrasti: controllo e morbidezza, esposizione e occultamento, precisione e fluidità. Ogni look coglie uno stato di equilibrio in cui gli opposti convivono, in un linguaggio visivo al tempo stesso deciso e introspettivo.", "d.p2": "L’atmosfera è carica di un’intensità sottile. Le emozioni sono trattenute, eppure presenti. C’è un’eleganza nella misura, una sorta di ribellione calma. La donna al centro di questo racconto fa propria la sua complessità, senza metterla in scena. È una storia di contrasto, non di conflitto: di armonia trovata nel paradosso.", "d.inspiration": "Ispirazione", "d.r1": "Femminilità d’avanguardia: Ann Demeulemeester, Helmut Lang, Yohji Yamamoto.", "d.r2": "Romanticismo gotico: l’eleganza oscura dei corsetti e delle sottovesti vittoriane.", "d.r3": "Morbidezza post-apocalittica: capi che proteggono come un’armatura e al tempo stesso espongono.", "d.r4": "Il minimalismo degli anni ’90 incontra la sovversione degli anni 2000: linee pulite interrotte da tagli e sovrapposizioni inattese.", "d.fabrics": "Tessuti", "d.fab1": "(1) Popeline di cotone Sea Island", "d.fab2": "(2) Taffetà di seta", "d.fab3": "(3) Organza trasparente", "d.fab4": "(4) Lana pettinata", "d.fab5": "(5) Coutil di cotone", "d.f1": "(1) Popeline bianca, lana nera", "d.f2": "(2) In piedi", "d.f3": "(3) Ritratto", "d.f4": "(4) Allacciatura a corsetto, taffetà", "d.f5": "(5) A terra", "d.f6": "(6) Organza e pizzo", "lb.close": "Chiudi ×", "lb.prev": "← Precedente", "lb.next": "Successivo →", "footer": "Tutti i diritti riservati © 2026 Ece Ege · Milano", "c.nMood": "Moodboard e campioni di tessuto", "c.nSketch1": "Sketchbook, primi look", "c.nSketch2": "Sketchbook, feltro e texture", "c.nSketch3": "Sketchbook, muschio e corteccia", "c.overview": "Panoramica della collezione", "c.illu": "Illustrazione, fronte e retro", "c.oMood": "Moodboard", "c.oWords": "Nove parole, da naturale ad autentico", "c.oSpec": "Look selezionato: abito interamente in feltro, disegni tecnici", "c.mMood": "Moodboard: il padiglione nomade", "c.mSketch": "Schizzi: struttura piegata, pelle di funghi e raso duchesse", "c.dRefs": "Riferimenti di ispirazione e tessuti"}, "es": {"nav.home": "Inicio", "projects": "Proyectos y colaboraciones", "nav.projectsShort": "Proyectos", "contact": "Contacto", "hero.title": "Ropa que te reconecta con la esencia", "hero.text": "ECHÉ EGEH es un concepto construido en torno a la idea de reconectar con la esencia. La visión es crear ropa que vaya más allá de la función o la tendencia, como un recordatorio de autenticidad y de arraigo interior.", "hero.sign": "Ece Ege · Milán", "worldview.title": "Visión del mundo", "worldview.text": "Desde la convicción de que explorar la naturaleza nos permite redescubrir las profundidades ocultas de nuestra humanidad, ECHÉ EGEH entiende la ropa como un medio de reconexión: ofrece más que prendas, ofrece una perspectiva.", "values.title": "Valores", "values.1": "La esencia antes que el exceso", "values.2": "La verdad cruda de los materiales", "values.3": "Intimidad y ritual", "values.4": "Singularidad atemporal", "projects.viewAll": "Ver todos →", "about.title": "Sobre mí", "about.text": "ECHÉ EGEH es mi nombre y el nombre de este proyecto. Trata sobre la ropa y sobre los rituales silenciosos y las emociones que se despliegan a su alrededor: un espacio donde vestirse se convierte en un regreso a la esencia.", "about.role": "Fundadora y directora creativa · Con base en Milán", "email": "Correo electrónico", "copy": "Copiar", "write.title": "Escríbenos", "write.text": "Para colaboraciones, encargos y prensa. Deja tu correo para que Ece pueda responderte.", "form.name": "Nombre", "form.message": "Mensaje", "form.send": "Enviar", "index.text": "Colecciones y objetos del portafolio de Diseño de Moda 2025. Cada entrada se abre a su historia, sus materiales y sus imágenes.", "type.collection": "Colección — 2025", "type.accessories": "Accesorios — 2025", "later.label": "Colaboraciones", "later.text": "Aquí se añadirán nuevos proyectos y colaboraciones.", "post.back": "← Todos los proyectos", "post.collectionBA": "Colección · Grado en Diseño de Moda, 2025", "post.process": "Proceso", "post.backLabel": "Volver", "post.allProjects": "Todos los proyectos", "post.next02": "Siguiente 02.", "post.next03": "Siguiente 03.", "post.next04": "Siguiente 04.", "post.prev01": "Anterior 01.", "post.prev02": "Anterior 02.", "post.prev03": "Anterior 03.", "n.p1": "La colección expresa la conexión entre la naturaleza y la humanidad, no mediante el uso de materiales naturales, sino a través de elementos visuales y conceptuales que evocan la presencia de la naturaleza en la forma, la silueta y la estructura.", "n.p2": "Mediante técnicas y estéticas de diseño inspiradas en patrones orgánicos, formas geométricas y contrastes de textura, la colección crea un diálogo entre la naturaleza y la humanidad, y muestra cómo el mundo exterior actúa como espejo de nuestros paisajes interiores.", "n.p3": "Es una reflexión sobre cómo comprender la belleza intrincada y la complejidad de la naturaleza nos permite reconectar con lo más profundo de nosotros mismos, e invita a una mirada más consciente e introspectiva sobre nuestra relación con el mundo que nos rodea.", "n.f1": "(1) Fieltro musgo y fieltro estampado", "n.f2": "(2) Mangas de fieltro, heno", "n.f3": "(3) Fieltro estampado, en el establo", "n.f4": "(4) Manga de fieltro", "n.f5": "(5) Fieltro musgo", "n.f6": "(6) Vestido largo de fieltro", "o.p1": "Organic Form nace de un moodboard de fibra cruda, lana color arcilla, cápsulas de amapola y paisajes abiertos. Nueve palabras sostienen la colección y de ellas crecen sus volúmenes: pantalones globo, mangas capullo y bajos burbuja.", "o.w1": "(1) Natural", "o.w2": "(2) Orgánico", "o.w3": "(3) Terroso", "o.w4": "(4) Crudo", "o.w5": "(5) Botánico", "o.w6": "(6) Fibroso", "o.w7": "(7) Cálido", "o.w8": "(8) Sereno", "o.w9": "(9) Auténtico", "o.selected": "Look seleccionado: vestido íntegramente de fieltro", "o.shape": "Forma", "o.aline": "Línea A", "o.armhole": "Sisa", "o.wide": "Abertura amplia", "o.hem": "Bajo", "o.bubble": "Bajo burbuja", "o.f1": "(1) El vestido íntegramente de fieltro", "o.f2": "(2) Ilustración, delante y detrás", "o.f3": "(3) Portada del portafolio", "m.type": "Accesorios · En diálogo con Dina Haddadin y Rasem Kamal", "m.p1": "Este proyecto converge con dos musas, Dina Haddadin y Rasem Kamal, creadores de un pabellón nómada sostenible en el desierto de Jordania, y da origen a Futuristic Nomad.", "m.p2": "Su pabellón reinterpreta una tienda beduina local: una estructura de acero corten cubierta de pelo de cabra para refrescar, con una fuente de agua autosuficiente que se convierte en superficie refrigerante y en un oasis acogedor. La estructura permeable se funde con su entorno, pero destaca como un refugio en la tierra de los nómadas.", "m.p3": "La colección combina elementos futuristas con la estética nómada y encarna la adaptabilidad, la resiliencia y la conciencia ecológica. Es un relato visual sobre el diálogo entre arquitectura y moda, y una celebración de la fusión cultural y la sostenibilidad.", "m.materials": "Materiales", "m.mushroom": "Cuero de hongos", "m.satin": "Satén duquesa", "m.f1": "(1) Bolso de satén plegado", "m.f2": "(2) Retrato de estudio", "m.f3": "(3) Bolso saco", "d.p1": "Esta colección encarna la tensión silenciosa entre la fuerza y la vulnerabilidad. Explora el juego de contrastes: control y suavidad, exposición y ocultamiento, precisión y fluidez. Cada look captura un estado de equilibrio en el que los opuestos conviven, con un lenguaje visual a la vez firme e introspectivo.", "d.p2": "La atmósfera está cargada de una intensidad sutil. Las emociones están contenidas, pero presentes. Hay una elegancia en la contención, una especie de rebeldía serena. La mujer en el centro de este relato asume su complejidad, sin representarla. Es una historia de contraste, no de conflicto: de armonía encontrada en la paradoja.", "d.inspiration": "Inspiración", "d.r1": "Feminidad de vanguardia: Ann Demeulemeester, Helmut Lang, Yohji Yamamoto.", "d.r2": "Romanticismo gótico: la elegancia oscura de la corsetería y de las enaguas victorianas.", "d.r3": "Suavidad posapocalíptica: prendas que protegen como una armadura y a la vez exponen.", "d.r4": "El minimalismo de los 90 se encuentra con la subversión de los 2000: líneas limpias interrumpidas por cortes y capas inesperados.", "d.fabrics": "Tejidos", "d.fab1": "(1) Popelina de algodón Sea Island", "d.fab2": "(2) Tafetán de seda", "d.fab3": "(3) Organza transparente", "d.fab4": "(4) Lana peinada", "d.fab5": "(5) Coutil de algodón", "d.f1": "(1) Popelina blanca, lana negra", "d.f2": "(2) De pie", "d.f3": "(3) Retrato", "d.f4": "(4) Cordones de corsé, tafetán", "d.f5": "(5) En el suelo", "d.f6": "(6) Organza y encaje", "lb.close": "Cerrar ×", "lb.prev": "← Anterior", "lb.next": "Siguiente →", "footer": "Todos los derechos reservados © 2026 Ece Ege · Milán", "c.nMood": "Moodboard y muestras de tela", "c.nSketch1": "Cuaderno de bocetos, primeros looks", "c.nSketch2": "Cuaderno de bocetos, fieltro y texturas", "c.nSketch3": "Cuaderno de bocetos, musgo y corteza", "c.overview": "Vista general de la colección", "c.illu": "Ilustración, delante y detrás", "c.oMood": "Moodboard", "c.oWords": "Nueve palabras, de natural a auténtico", "c.oSpec": "Look seleccionado: vestido íntegramente de fieltro, dibujos técnicos", "c.mMood": "Moodboard: el pabellón nómada", "c.mSketch": "Bocetos: estructura plegada, cuero de hongos y satén duquesa", "c.dRefs": "Referencias de inspiración y tejidos"}};
+  var STR = {"en": {"copied": "Copied", "selected": "Selected", "sending": "Sending…", "sent": "Sent", "invalidEmail": "Please enter a valid email address.", "missing": "Please fill in your name, email and message.", "thanks": "Thank you. Your message has been received.", "fallback": "This view can’t send messages. Please write to echeegeh@outlook.com instead.", "mailto": "Your email app should open with your message ready to send. If it doesn’t, write to echeegeh@outlook.com.", "open": "Open larger:", "language": "Language"}, "it": {"copied": "Copiato", "selected": "Selezionato", "sending": "Invio…", "sent": "Inviato", "invalidEmail": "Inserisci un indirizzo email valido.", "missing": "Compila nome, email e messaggio.", "thanks": "Grazie. Abbiamo ricevuto il tuo messaggio.", "fallback": "Da questa pagina non è possibile inviare messaggi. Scrivi a echeegeh@outlook.com.", "mailto": "Dovrebbe aprirsi la tua app di posta con il messaggio pronto da inviare. Se non si apre, scrivi a echeegeh@outlook.com.", "open": "Apri in grande:", "language": "Lingua"}, "es": {"copied": "Copiado", "selected": "Seleccionado", "sending": "Enviando…", "sent": "Enviado", "invalidEmail": "Introduce una dirección de correo válida.", "missing": "Completa tu nombre, tu correo y tu mensaje.", "thanks": "Gracias. Hemos recibido tu mensaje.", "fallback": "Desde esta vista no se pueden enviar mensajes. Escribe a echeegeh@outlook.com.", "mailto": "Debería abrirse tu aplicación de correo con el mensaje listo para enviar. Si no se abre, escribe a echeegeh@outlook.com.", "open": "Ver más grande:", "language": "Idioma"}};
+  var lang = 'en';
+  var EN = {};
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function (el) { EN[el.getAttribute('data-i18n')] = el.innerHTML; });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-cap]'), function (el) { EN[el.getAttribute('data-i18n-cap')] = el.getAttribute('data-caption'); });
+  function tr(key) { return (lang !== 'en' && I18N[lang][key]) || EN[key]; }
+  function T(key) { return STR[lang][key]; }
+  function setLang(l) {
+    lang = (l === 'it' || l === 'es') ? l : 'en';
+    document.documentElement.lang = lang;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function (el) { el.innerHTML = tr(el.getAttribute('data-i18n')); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-cap]'), function (el) {
+      var cap = tr(el.getAttribute('data-i18n-cap'));
+      el.setAttribute('data-caption', cap);
+      el.setAttribute('aria-label', T('open') + ' ' + cap);
+      var img = el.querySelector('img'); if (img) img.alt = cap;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lang]'), function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
+    document.getElementById('lang').setAttribute('aria-label', T('language'));
+    var status = document.getElementById('form-status'); if (status) { status.textContent = ''; status.classList.remove('error'); }
+    try { localStorage.setItem('eche-lang', lang); } catch (e) {}
+    if (typeof updateTitle === 'function') updateTitle();
+  }
+  document.getElementById('lang').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-lang]'); if (b) setLang(b.getAttribute('data-lang'));
+  });
   var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
   var homeSections = ['worldview', 'values', 'about', 'contact'];
   var posts = ['nature-of-us', 'organic-form', 'nomadify', 'structured-duality'];
@@ -637,11 +681,19 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
     } else if (changed || target !== 'home' || h === 'home') {
       window.scrollTo(0, 0);
     }
-    var view = document.querySelector('.view[data-view="' + target + '"] h1');
-    document.title = target === 'home' ? 'ECHÉ EGEH' : ((view ? view.textContent : '') + ' — ECHÉ EGEH');
+    current = target;
+    updateTitle();
+  }
+  var current = 'home';
+  function updateTitle() {
+    var view = document.querySelector('.view[data-view="' + current + '"] h1');
+    document.title = current === 'home' ? 'ECHÉ EGEH' : ((view ? view.textContent : '') + ' — ECHÉ EGEH');
   }
   var booted = false;
   window.addEventListener('hashchange', route);
+  var saved = 'en';
+  try { saved = localStorage.getItem('eche-lang') || 'en'; } catch (e) {}
+  setLang(saved);
   route();
   booted = true;
 
@@ -653,7 +705,6 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
   var statusEl = document.getElementById('form-status');
   var sendBtn = document.getElementById('contact-send');
   function say(text, isError) { statusEl.textContent = text; statusEl.classList.toggle('error', !!isError); }
-  var FALLBACK = 'This view can’t send messages. Please write to ecege3e@gmail.com instead.';
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var fields = { name: form.elements.name, email: form.elements.email, message: form.elements.message };
@@ -665,10 +716,10 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
       if (!ok && !bad) bad = el;
     });
     if (bad) {
-      say(bad === fields.email && fields.email.value.trim() ? 'Please enter a valid email address.' : 'Please fill in your name, email and message.', true);
+      say(bad === fields.email && fields.email.value.trim() ? T('invalidEmail') : T('missing'), true);
       bad.focus(); return;
     }
-    sendBtn.disabled = true; sendBtn.textContent = 'Sending…'; say('');
+    sendBtn.disabled = true; sendBtn.textContent = T('sending'); say('');
     Promise.all([dbReady, userReady]).then(function (r) {
       var db = r[0], user = r[1];
       if (!db || !user) throw new Error('standalone');
@@ -683,20 +734,20 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
       });
     }).then(function () {
       form.reset();
-      say('Thank you. Your message has been received.');
-      sendBtn.textContent = 'Sent';
-      setTimeout(function () { sendBtn.textContent = 'Send'; sendBtn.disabled = false; }, 2400);
+      say(T('thanks'));
+      sendBtn.textContent = T('sent');
+      setTimeout(function () { sendBtn.textContent = tr('form.send'); sendBtn.disabled = false; }, 2400);
     }).catch(function (err) {
       if (err && err.message === 'standalone') {
         var subject = 'Message from ' + fields.name.value.trim() + ' via echeegeh.grupoarmenia.com';
         var text = fields.message.value.trim() + '\n\n' + fields.name.value.trim() + '\n' + fields.email.value.trim();
-        window.location.href = 'mailto:ecege3e@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
-        say('Your email app should open with your message ready to send. If it doesn’t, write to ecege3e@gmail.com.');
+        window.location.href = 'mailto:echeegeh@outlook.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
+        say(T('mailto'));
         sendBtn.textContent = 'Send'; sendBtn.disabled = false;
         return;
       }
       say(FALLBACK, true);
-      sendBtn.textContent = 'Send'; sendBtn.disabled = false;
+      sendBtn.textContent = tr('form.send'); sendBtn.disabled = false;
     });
   });
 
@@ -736,12 +787,12 @@ section { padding-block: calc(var(--section) / 2); scroll-margin-top: 56px; }
   var btn = document.getElementById('copy-email');
   btn.addEventListener('click', function () {
     var text = btn.getAttribute('data-copy');
-    function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1800); }
+    function done() { btn.textContent = T('copied'); setTimeout(function () { btn.textContent = tr('copy'); }, 1800); }
     function fallback() {
       var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
       var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      btn.textContent = 'Selected';
-      setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+      btn.textContent = T('selected');
+      setTimeout(function () { btn.textContent = tr('copy'); }, 1800);
     }
     try {
       navigator.clipboard.writeText(text).then(done, fallback);
